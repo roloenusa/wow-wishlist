@@ -1,4 +1,10 @@
 WowWishlist::Application.routes.draw do
+  get "users/new"
+
+  get "pages/home"
+
+  get "pages/contact"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
