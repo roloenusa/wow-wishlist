@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>WoW Wishlist | <%= @title %></title>
-  <%= render 'layout/stylesheets' %>
+  <head>
+    <title><%= title %></title>
+    <%= csrf_meta_tag %>
+    <%= render 'layouts/stylesheets' %>
+    <%= javascript_include_tag :defaults %>
+  </head>
+  <body>
 
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
+    <%= yield %>
 
-<%= yield %>
-
-</body>
+  </body>
 </html>
