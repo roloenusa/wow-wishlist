@@ -20,4 +20,6 @@ ActiveRecord::Schema.define(:version => 20110725051446) do
     t.string   "encrypted_password"
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+
 end

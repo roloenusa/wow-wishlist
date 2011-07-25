@@ -27,8 +27,7 @@ describe User do
   end
   
   it "should not allow a name more than 10 characters" do
-    name = "a" * 11
-    user = User.new(@attr.merge(:name => name))
+    user = User.new(@attr.merge(:name => "a" * 21))
     user.should_not be_valid
   end
   
