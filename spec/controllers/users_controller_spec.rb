@@ -2,6 +2,33 @@ require 'spec_helper'
 
 describe UsersController do
   render_views
+  
+  describe "GET 'show'" do
+    
+    before(:each) do
+      @user = Factory(:user)
+    end
+    
+    it "should be success" do
+      get :show, :id => @user
+      response.should be_success
+    end
+    
+    it "should have the right user" do
+      get :show, :id => @user
+      assigns(:user).should == @user
+    end
+    
+    it "should have the right title" do
+      get :show, :id => @user
+      response.should have_selector("title", :content => @user.name)
+    end
+    
+    it "should include the user's name" do
+      get :show, :id => @user
+      response.should have_selector("h1", :content => @user.name)
+    end
+  end
 
   describe "GET 'new'" do
     it "should be successful" do
@@ -41,14 +68,19 @@ describe UsersController do
       it "should redirect the user to the user page" do
         post :create, :user => @attr
         user = User.find_by_name(@attr[:name])
-        response.should redirect_to(user)
+        response.should redirect_to(user_path(assigns(:user)))
+      end
+      
+      it "should have a welcome message" do
+        post :create, :user => @attr
+        flash[:success].should =~ /welcome to the sample app/i
       end
     end
     
     describe "failure" do
       
       before(:each) do
-        @attr = {:name => "", :email => ""}
+        @attr = {:name => "", :email => "", :password => "", :password_confirmation => ""}
       end
       
       it "should not create a user" do
