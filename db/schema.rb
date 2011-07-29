@@ -10,7 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110725190630) do
+ActiveRecord::Schema.define(:version => 20110729070157) do
+
+  create_table "characters", :force => true do |t|
+    t.integer  "lastModified"
+    t.string   "name"
+    t.string   "realm"
+    t.integer  "class"
+    t.integer  "race"
+    t.integer  "gender"
+    t.integer  "level"
+    t.integer  "achievementPoints"
+    t.string   "thumbnail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "characters", ["name", "realm"], :name => "index_characters_on_name_and_realm", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"

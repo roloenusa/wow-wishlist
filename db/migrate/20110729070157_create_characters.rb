@@ -13,6 +13,7 @@ class CreateCharacters < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :characters, [:name, :realm], :unique => true
   end
 
   def self.down
