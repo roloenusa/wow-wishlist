@@ -1,19 +1,19 @@
 class CreateCharacters < ActiveRecord::Migration
   def self.up
     create_table :characters do |t|
-      t.integer :lastModified
-      t.string :name
-      t.string :realm
-      t.integer :class
-      t.integer :race
-      t.integer :gender
-      t.integer :level
-      t.integer :achievementPoints
-      t.string :thumbnail
+      t.integer :cLastModified
+      t.string :cName
+      t.string :cRealm
+      t.integer :cClass
+      t.integer :cRace
+      t.integer :cGender
+      t.integer :cLevel
+      t.integer :cAchievementPoints
+      t.string :cThumbnail
 
       t.timestamps
     end
-    add_index :characters, [:name, :realm], :unique => true
+    add_index :characters, [:cName, :cRealm], :unique => true
   end
 
   def self.down

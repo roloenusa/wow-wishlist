@@ -13,20 +13,20 @@
 ActiveRecord::Schema.define(:version => 20110729070157) do
 
   create_table "characters", :force => true do |t|
-    t.integer  "lastModified"
-    t.string   "name"
-    t.string   "realm"
-    t.integer  "class"
-    t.integer  "race"
-    t.integer  "gender"
-    t.integer  "level"
-    t.integer  "achievementPoints"
-    t.string   "thumbnail"
+    t.integer  "cLastModified"
+    t.string   "cName"
+    t.string   "cRealm"
+    t.integer  "cClass"
+    t.integer  "cRace"
+    t.integer  "cGender"
+    t.integer  "cLevel"
+    t.integer  "cAchievementPoints"
+    t.string   "cThumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "characters", ["name", "realm"], :name => "index_characters_on_name_and_realm", :unique => true
+  add_index "characters", ["cName", "cRealm"], :name => "index_characters_on_cName_and_cRealm", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"
