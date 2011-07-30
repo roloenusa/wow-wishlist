@@ -1,4 +1,4 @@
 class Character < ActiveRecord::Base
-  validates :cName,  :presence => true
-  validates :cRealm, :presence => true
+  validates :name,  :presence => true
+  validates :realm, :presence => true
 end
