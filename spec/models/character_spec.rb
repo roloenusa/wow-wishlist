@@ -4,15 +4,15 @@ describe Character do
   
   before(:each) do
     @attr = {
-      :cLastModified       => 1311477650000,
-      :cName               => "Sodastereo",
-      :cRealm              => "Sargeras",
-      :cClass              => 11,
-      :cRace               => 4,
-      :cGender             => 0,
-      :cLevel              => 85,
-      :cAchievementPoints  => 6600,
-      :cThumbnail          => "sargeras/189/860861-avatar.jpg"
+      :lastmodified       => 1311477650000,
+      :name               => "Sodastereo",
+      :realm              => "Sargeras",
+      :klass              => 11,
+      :race               => 4,
+      :gender             => 0,
+      :level              => 85,
+      :achievementpoints  => 6600,
+      :thumbnail          => "sargeras/189/860861-avatar.jpg"
     }
   end
   
@@ -21,12 +21,16 @@ describe Character do
   end
   
   it "should require a name" do
-    character = Character.new(@attr.merge(:cName => ""))
+    character = Character.new(@attr.merge(:name => ""))
     character.should_not be_valid
   end
   
   it "should require a realm" do
-    character = Character.new(@attr.merge(:cRealm => ""))
+    character = Character.new(@attr.merge(:realm => ""))
     character.should_not be_valid
+  end
+  
+  it "should respond to :clean_hash" do
+    Character.should respond_to(:clean_hash)
   end
 end

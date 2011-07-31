@@ -1,0 +1,14 @@
+<div class="avatar push-1"><img src="http://us.battle.net/static-render/us/<%= @character.thumbnail %>" /></div>
+<div class="prepend-4">
+  <h1><%= @character.name %></h1>
+  <h2><%= @character.realm %></h2>
+</div>
+<hr />
+<div class="round details">
+  <strong>Last Modified:</strong> <%= Time.at(@character.lastmodified / 1000).strftime("%m/%d/%y %I:%M%p") %><br />             
+  <strong>Realm:</strong> <%= @character.realm %><br />
+  <strong>Class:</strong> <%= @character.klass %><br />             
+  <strong>Level:</strong> <%= @character.level %><br />            
+  <strong>Achivement Points:</strong> <%= @character.achievementpoints %>
+</div>  
+                

@@ -1,5 +1,9 @@
 WowWishlist::Application.routes.draw do
 
+  resources :characters do
+    
+  end
+  
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
   
@@ -10,6 +14,7 @@ WowWishlist::Application.routes.draw do
   root :to => "pages#home"
 
   get "pages/contact"
+  get "pages/search"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

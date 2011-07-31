@@ -5,5 +5,9 @@ class PagesController < ApplicationController
 
   def contact
   end
-
+  
+  def search
+    @title = "Search"
+    @region = [:us, :eu]
+  end
 end

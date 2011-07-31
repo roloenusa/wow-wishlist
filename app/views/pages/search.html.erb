@@ -1,0 +1,18 @@
+<h1>Search</h1>
+
+<hr />
+
+<div class="round box">
+  <div class="caps">CHARACTERS</div>
+  <%= form_for(:characters, :url => new_character_path) do |f| %>
+    <div class="field">
+      <%= f.label :region %>
+      <%= f.select :region, BattleNet::regions.each { |k| [k, k] } %>
+    </div>
+    <div class="field">
+      <%= f.label :realm %>
+      <%= f.select :realm,  options_for_select(BattleNet::realms) %>
+    </div>
+  <% end %>
+
+</div>
