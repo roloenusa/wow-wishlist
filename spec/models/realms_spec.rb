@@ -4,7 +4,7 @@ describe Realms do
   before(:each) do
     @attr = {
       :region => "us",
-      :type => "pvp",
+      :tipe => "pvp",
       :queue => true,
       :status => true,
       :population => "high",
@@ -36,5 +36,19 @@ describe Realms do
     realm = Realms.create!(@attr)
     realm2 = Realms.new(@attr)
     realm2.should_not be_valid
-  end 
+  end
+  
+  it "should respond to :save_from_battlenet" do
+    Realms.should respond_to(:save_from_battlenet)
+  end
+  
+  it "should save a hash from battlenet" do
+    realms_array = {}
+    realms_array[:realms] = [@attr, @attr.merge(:name => 'elune')]
+    realms_array[:region] = :us
+    
+    lambda do
+      Realms.save_from_battlenet(realms_array)
+    end.should change(Realms, :count).by(2)
+  end
 end

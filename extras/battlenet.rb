@@ -14,7 +14,8 @@ module BattleNet
     params[:query] = params[:options].nil? ? "" : "?fields=#{params[:options].join(',')}"
 
     character_hash = BattleNetCall(params)
-    cleanHash(character_hash)
+    character_hash = cleanHash(character_hash)
+    character_hash.merge(:region => params[:region])
   end
 
   def self.getRealms(params = {})
@@ -23,7 +24,8 @@ module BattleNet
     params[:query] = params[:options].nil? ? "" : "?realms=#{params[:options].join(',')}"
 
     realm_hash = BattleNetCall(params)
-    cleanHash(realm_hash)
+    realm_hash = cleanHash(realm_hash)
+    realm_hash.merge(:region => params[:region])
   end
   
 private
@@ -59,11 +61,19 @@ private
   end
   
   def self.cleanHash(test)
+  
     result = {}
     test.each do |k, v|
+      
+      if v.is_a?(Array)
+        a = []
+        v.each do |t| a << cleanHash(t) end
+        v = a
+      end
       k = "klass" if k == "class"
+      k = "tipe"  if k == "type"
       result[k.parameterize.underscore.to_sym] = v
-    end
+    end        
     result
   end
 end

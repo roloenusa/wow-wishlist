@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110731220725) do
+ActiveRecord::Schema.define(:version => 20110802065438) do
 
   create_table "characters", :force => true do |t|
     t.integer  "lastmodified"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20110731220725) do
 
   create_table "realms", :force => true do |t|
     t.string   "region"
-    t.string   "type"
+    t.string   "tipe"
     t.boolean  "queue"
     t.boolean  "status"
     t.string   "population"
