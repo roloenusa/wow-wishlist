@@ -4,70 +4,66 @@ require 'json'
 
 module BattleNet
 
-  def self.regions
+  def self.getRegions
     [:us]
   end
 	  
-  def self.getCharacterInfo(region, realm, name, options =[])
-    query = buildGenericString(region, realm, name, options)
-    test = JSON.parse(BattleNetCall(query))
-    result = {}
-    test.each do |k, v|
-      k = "klass" if k == "class"
-      result[k.parameterize.underscore.to_sym] = v
-    end
-    result
-  end
-  
-  
-  # Generic call to battle.net
-  def self.callBattleNet(params = {})
-    
-    # Fix the :region to default to :us
+  def self.getCharacter(params = {})
     params[:region] = :us if params[:region].nil?
-    
-    if params[:type] == :realm
-      getRealmInfo params
-    else
-      return {:status => "nok", :reason => "Type of call not found"}
-    end
-  end
-  
-  def self.getRealmInfo(info = {})
-    info[:region] = :us if info[:region].nil?
-    info[:type] = 'realm/status' if (info[:type].nil? || info[:type] == :realm)
-    
-    query = info[:options].nil? ? "" : "?realms=#{info[:options].join(',')}"
-    query = "http://#{info[:region]}.battle.net/api/wow/#{info[:type]}/#{query}"
-    
-    test = BattleNetCall(query)
-    
-    result = {}
-    test.each do |k, v|
-      k = "klass" if k == "class"
-      result[k.parameterize.underscore.to_sym] = v
-    end
-    result
-  end
-  
-private 
+    params[:type] = "character/#{params[:realm]}/#{params[:name]}"
+    params[:query] = params[:options].nil? ? "" : "?fields=#{params[:options].join(',')}"
 
-  def self.buildGenericString(region, realm, name,options=[] )
-    query = options.nil? ? "" : "?fields=#{options.join(',')}"
-    query = "http://#{region}.battle.net/api/wow/character/#{realm}/#{name}#{query}"
+    character_hash = BattleNetCall(params)
+    cleanHash(character_hash)
+  end
+
+  def self.getRealms(params = {})
+    params[:region] = :us if params[:region].nil?
+    params[:type] = 'realm/status'
+    params[:query] = params[:options].nil? ? "" : "?realms=#{params[:options].join(',')}"
+
+    realm_hash = BattleNetCall(params)
+    cleanHash(realm_hash)
   end
   
-  def self.BattleNetCall(query)
+private
+
+  def self.buildGenericString(params = {})
+    "http://#{params[:region]}.battle.net/api/wow/#{params[:type]}#{params[:query]}"
+  end
+  
+  def self.BattleNetCall(params = {})
+    query = buildGenericString(params)
+    response = callAPI(query)
+    parseResponse(response)
+  end
+  
+  def self.callAPI(query)
+    
     url = URI.parse(query)
     query = url.path + (url.query.nil? ? "" : "?#{url.query}")
     request = Net::HTTP::Get.new(query)
     response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
+  end
+  
+  def self.parseResponse(response)
     
     if response.code != "200"
-      response.body = '{"status":"nok", "reason":"Blizzard didn\'t like this request! :("}'
+    
+      # When the API from blizzard fails to find a character, it sends a similar hash. 
+      # This makes it so I can catch the errors without worrying about coding for each response.
+      response.body = '{"status":"nok", "reason":"Blizzard didn\'t like this request!"}'
     end
     
     JSON.parse(response.body)
   end
   
+  def self.cleanHash(test)
+    result = {}
+    test.each do |k, v|
+      k = "klass" if k == "class"
+      result[k.parameterize.underscore.to_sym] = v
+    end
+    result
+  end
 end

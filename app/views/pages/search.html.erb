@@ -7,11 +7,11 @@
   <%= form_for(:characters, :url => new_character_path) do |f| %>
     <div class="field">
       <%= f.label :region %>
-      <%= f.select :region, BattleNet::regions.each { |k| [k, k] } %>
+      <%= f.select :region, BattleNet::Regions.each { |k| [k, k] } %>
     </div>
     <div class="field">
       <%= f.label :realm %>
-      <%= f.select :realm,  options_for_select(BattleNet::realms) %>
+      <%= f.select :realm,  BattleNet::Realms.each {|p| [ p[:name], p[:slug] ] } %>
     </div>
   <% end %>
 
