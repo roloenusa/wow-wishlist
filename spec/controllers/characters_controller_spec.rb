@@ -36,4 +36,32 @@ describe CharactersController do
       end
     end   
   end
+  
+  describe "GET 'search'" do  
+      
+    it "should be success" do
+      get :search
+      response.should be_success
+    end
+    
+    it "should have the right title" do
+      get :search
+      response.should have_selector("title", :content => "Search")
+    end
+    
+    describe "with parameters" do
+      
+      describe "all parameters" do
+        
+        before(:each) do
+          @character = Factory(:character)
+        end
+        
+        it "should find the right user" do
+          get :search, :realm => @character.realm, :name => @character.name
+          response.should redirect_to(character_path(@character))
+        end
+      end
+    end
+  end
 end
