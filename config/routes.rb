@@ -1,11 +1,13 @@
 WowWishlist::Application.routes.draw do
 
+
   resources :characters do
     
   end
   
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :realms
   
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'

@@ -5,6 +5,9 @@ class CharactersController < ApplicationController
     @title = "#{@character.realm} | #{@character.name}"
   end
   
-  def new
+  def index
+    region = params[:region]
+    realm = params[:realm]
+    character = params[:character]
   end
 end

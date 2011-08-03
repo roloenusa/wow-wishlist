@@ -11,7 +11,7 @@ module BattleNet
   def self.getCharacter(params = {})
     params[:region] = :us if params[:region].nil?
     params[:type] = "character/#{params[:realm]}/#{params[:name]}"
-    params[:query] = params[:options].nil? ? "" : "?fields=#{params[:options].join(',')}"
+    params[:query] = params[:options].nil? ? "" : "?fields=#{params[:fields].join(',')}"
 
     character_hash = BattleNetCall(params)
     character_hash = cleanHash(character_hash)
@@ -21,7 +21,7 @@ module BattleNet
   def self.getRealms(params = {})
     params[:region] = :us if params[:region].nil?
     params[:type] = 'realm/status'
-    params[:query] = params[:options].nil? ? "" : "?realms=#{params[:options].join(',')}"
+    params[:query] = params[:options].nil? ? "" : "?realms=#{params[:realms].join(',')}"
 
     realm_hash = BattleNetCall(params)
     realm_hash = cleanHash(realm_hash)

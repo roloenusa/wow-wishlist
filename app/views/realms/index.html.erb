@@ -1,0 +1,16 @@
+<h1>Realms</h1>
+
+<table>
+  <tr> 
+    <th>Region</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Population</th>
+    <th>Queue</th>
+  </tr>
+  <% @realms.each do |r| %>
+  <tr> 
+    <td><%= r.region %></td><td><strong><%= r.name %></strong></td><td><%= r.tipe %></td><td><%= r.population %></td><td><%= r.queue ? "Yes" : "No" %></td>
+  </tr>
+  <% end %>
+</table>
