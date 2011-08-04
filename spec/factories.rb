@@ -20,4 +20,5 @@ Factory.define :character do |character|
   character.level             85
   character.achievementpoints 6600
   character.thumbnail         "sargeras/189/860861-avatar.jpg"
+  character.region            "us"
 end

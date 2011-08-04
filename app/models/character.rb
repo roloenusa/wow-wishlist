@@ -1,11 +1,15 @@
 class Character < ActiveRecord::Base
-  validates :name,  :presence => true
-  validates :realm, :presence => true
+  validates :name,    :presence => true
+  validates :realm,   :presence => true
+  validates :region,  :presence => true
   
-  def self.clean_hash(attr)
-  #  c = Character.new
-  #  attr = c.attributes.merge(attr)
-  #  attr.delete_if {|k, v| !c.attributes.include?(k)}
+  def update_from_battlenet(battlenet = {})
+    if battlenet[:status].nil?
+      battlenet.delete(:status)
+      self.update_attributes(battlenet)
+    end
   end
+
+private
   
 end
