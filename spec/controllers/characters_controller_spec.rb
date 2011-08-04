@@ -58,7 +58,7 @@ describe CharactersController do
         end
         
         it "should find the right user" do
-          get :search, :realm => @character.realm, :name => @character.name
+          get :search, :realm => @character.realm, :name => @character.name, :region => @character.region
           response.should redirect_to(character_path(@character))
         end
       end

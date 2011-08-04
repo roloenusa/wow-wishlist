@@ -14,14 +14,15 @@ class CharactersController < ApplicationController
   def search
     @title = "Search"
     region = params[:region]
-    realm = params[:realms]
+    realm = params[:realm]
     name = params[:name]
-    @character = Character.find(:first, :conditions => ["realm = ? and name = ?", realm, name])
     
-    if @character.nil?
+    @character = Character.find_or_retrieve(region, realm, name)
     
+    if !@character.nil?
+      render 'show'
     else
-      redirect_to(character_path(@character))
+      flash[:error] = "We couldn't find your character... Did you spell the name right?"
     end
   end
 end
