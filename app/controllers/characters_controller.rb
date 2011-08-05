@@ -2,7 +2,7 @@ class CharactersController < ApplicationController
   
   def show
     @character = Character.find(params[:id])
-    @title = "#{@character.realm} | #{@character.name}"
+    @title = "#{@character.realm.name} | #{@character.name}"
   end
   
   def index

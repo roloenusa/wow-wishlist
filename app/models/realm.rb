@@ -1,5 +1,5 @@
 class Realm < ActiveRecord::Base
-  has_many :characters, :foreign_key => "realm_id"
+  has_many :characters
   
   validates :name,  :presence => true
   validates :slug,  :presence => true
@@ -17,7 +17,7 @@ class Realm < ActiveRecord::Base
   
   def self.find_by_region_and_name(region, name, quantity = :first)
     Realm.find(quantity, 
-                :conditions => ["name like ? and region like ?", 
+                :conditions => ["name LIKE ? and region LIKE ?", 
                 name, region])
   end
 end

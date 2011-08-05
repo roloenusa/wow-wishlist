@@ -10,12 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110804223304) do
+ActiveRecord::Schema.define(:version => 20110805061829) do
 
   create_table "characters", :force => true do |t|
     t.integer  "lastmodified"
     t.string   "name"
-    t.string   "realm"
     t.integer  "klass"
     t.integer  "race"
     t.integer  "gender"
@@ -27,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20110804223304) do
     t.integer  "realm_id"
   end
 
-  add_index "characters", ["name", "realm"], :name => "index_characters_on_name_and_realm", :unique => true
+  add_index "characters", ["name"], :name => "index_characters_on_name_and_realm", :unique => true
 
   create_table "realms", :force => true do |t|
     t.string   "region"
