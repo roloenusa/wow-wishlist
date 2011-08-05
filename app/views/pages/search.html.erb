@@ -4,22 +4,5 @@
 
 <div class="round box">
   <h3 class="caps">CHARACTERS</h3>
-  <%= form_for(:characters, :url => new_character_path) do |f| %>
-    <div class="field">
-      <%= f.label :region %><br />
-      <%= f.select :region, BattleNet::getRegions.each { |k| [k, k] } %>
-    </div>
-    <div class="field">
-      <%= f.label :realm %><br />
-      <%= f.collection_select :realm,  Realms.all, :slug, :name %>
-    </div>
-    <div class="field">
-      <%= f.label :character_name %><br />
-      <%= f.text_field :character_name %>
-    </div>
-    <div class="action">
-      <%= f.submit "Submit" %>
-    </div>
-  <% end %>
-
+  <%= render 'characters/search_form' %>
 </div>

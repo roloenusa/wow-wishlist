@@ -1,7 +1,1 @@
-<% if @character.nil? %> 
- "No character found!" 
-<% else %> 
-	<% @character.attributes.each do |k, v| %>
-		<%= "#{k} => #{v}" %><br />
-	<% end %>
-<% end%>
+<%= render 'search_form' %>

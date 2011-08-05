@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110803171317) do
+ActiveRecord::Schema.define(:version => 20110804223304) do
 
   create_table "characters", :force => true do |t|
     t.integer  "lastmodified"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20110803171317) do
     t.string   "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "region"
+    t.integer  "realm_id"
   end
 
   add_index "characters", ["name", "realm"], :name => "index_characters_on_name_and_realm", :unique => true

@@ -15,7 +15,6 @@ module BattleNet
 
     character_hash = BattleNetCall(params)
     character_hash = cleanHash(character_hash)
-    character_hash.merge(:region => params[:region])
   end
 
   def self.getRealms(params = {})

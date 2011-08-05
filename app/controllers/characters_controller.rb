@@ -1,5 +1,5 @@
 class CharactersController < ApplicationController
-
+  
   def show
     @character = Character.find(params[:id])
     @title = "#{@character.realm} | #{@character.name}"
@@ -13,16 +13,10 @@ class CharactersController < ApplicationController
   
   def search
     @title = "Search"
-    region = params[:region]
-    realm = params[:realm]
-    name = params[:name]
-    
-    @character = Character.find_or_retrieve(region, realm, name)
-    
-    if !@character.nil?
-      render 'show'
+    if @character = Character.find_or_retrieve(params[:region], params[:realm], params[:name])
+      redirect_to character_path(@character)
     else
-      flash[:error] = "We couldn't find your character... Did you spell the name right?"
+      flash.now[:error] = "#{params}"
     end
   end
 end

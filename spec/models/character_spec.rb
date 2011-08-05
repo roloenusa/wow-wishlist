@@ -6,14 +6,14 @@ describe Character do
     @attr = {
       :lastmodified       => 1311477650000,
       :name               => "Sodastereo",
-      :realm              => "Sargeras",
+      :realm              => Factory(:realm),
       :klass              => 11,
       :race               => 4,
       :gender             => 0,
       :level              => 85,
       :achievementpoints  => 6600,
       :thumbnail          => "sargeras/189/860861-avatar.jpg",
-      :region             => "us"
+      :realm_id           => 1
     }
   end
   

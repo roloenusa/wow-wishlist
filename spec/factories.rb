@@ -10,6 +10,16 @@ Factory.sequence :email do |n|
   "person-#{n}@example.com"
 end
 
+Factory.define :realm do |realm|
+  realm.region      "us"
+  realm.tipe        "pvp"
+  realm.queue       false
+  realm.status      true
+  realm.population  "high"
+  realm.name        "Sargeras"
+  realm.slug        "sargeras"
+end 
+
 Factory.define :character do |character|
   character.lastmodified      1311477650000
   character.name              "Sodastereo"
@@ -20,5 +30,5 @@ Factory.define :character do |character|
   character.level             85
   character.achievementpoints 6600
   character.thumbnail         "sargeras/189/860861-avatar.jpg"
-  character.region            "us"
+  character.realm_id          1
 end

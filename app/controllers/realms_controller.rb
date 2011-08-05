@@ -3,7 +3,7 @@ class RealmsController < ApplicationController
   def index
         
     @title = "Realms"
-    @realms = Realms.all
+    @realms = Realm.all
   end
 
 end

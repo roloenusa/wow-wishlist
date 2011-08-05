@@ -1,0 +1,15 @@
+<%= form_tag search_characters_path, :method => 'get' do %>
+  <div class="field">
+    <%= label_tag :region %><br />
+    <%= text_field_tag :region, params[:region] %>
+  </div>
+  <div class="field">
+    <%= label_tag :realm %><br />
+    <%= text_field_tag :realm %>
+  </div>
+  <div class="field">
+    <%= label_tag :name %><br />
+    <%= text_field_tag :name, params[:name] %>
+  </div>  
+  <%= submit_tag "Search", :name => nil %>
+<% end %> 
