@@ -44,25 +44,30 @@ describe CharactersController do
       @realm = Factory(:realm)
       @character = Factory(:character, :realm => @realm)
     end
-      
-    it "should be success" do
-      get :search
-      puts "The Factory =  #{Factory(:realm)}"
-      puts "The Character = #{@character}"
-      response.should be_success
-    end
     
-    it "should have the right title" do
-      get :search
-      response.should have_selector("title", :content => "Search")
-    end
-    
+    describe "success" do
       
-    describe "all parameters" do
+      it "should find the right character" do
+        get :search, :region => @realm.region, :realm => @realm.name, :name => @character.name
+        assigns(:character).should == @character
+      end
       
-      it "should find the right user" do
-        get :search, :realm => @realm.slug, :name => @character.name, :region => @realm.region
+      it "should redirect to the character path" do
+        get :search, :region => @realm.region, :realm => @realm.name, :name => @character.name
         response.should redirect_to(character_path(@character))
+      end
+    end
+      
+    describe "failure" do
+      
+      it "should redirect to :create" do
+        get :search, :realm => "fakename", :name => @character.name, :region => @realm.region
+        response.should redirect_to(new_character_path)
+      end
+      
+      it "should have a flash :error message" do
+        get :search, :realm => "fakename", :name => @character.name, :region => @realm.region
+        flash[:error] =~ /we were unable to find/i
       end
     end
   end

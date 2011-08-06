@@ -11,24 +11,22 @@ class CharactersController < ApplicationController
     character = params[:character]
   end
   
-  def create
+  def new
+    @title = "New"
     
-    @character = Character.new(params[:character])
-    if @character.update_from_battlenet
-      redirect_to character_path(@character)
-    else
-      @character.delete
-      flash.now[:error] = "We could not find your character in battlenet"
-      render 'search'
-    end
+    render 'search'
   end
+  
   
   def search
     @title = "Search"
-    if @character = Character.find_or_retrieve(params[:region], params[:realm], params[:name])
-      redirect_to character_path(@character)
+    
+    @character = Character.find_or_create(params[:region], params[:realm], params[:name])
+    if @character.nil?
+      flash[:error] = "We were unable to find #{params[:realm]}/#{params[:name]} in Battle.net"
+      redirect_to new_character_path
     else
-      flash.now[:error] = "#{params}"
+      redirect_to @character
     end
   end
 end

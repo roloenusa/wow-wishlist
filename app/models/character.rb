@@ -31,8 +31,19 @@ class Character < ActiveRecord::Base
       bn.delete(:realm)
       bn.delete(:status)
       return bn
-    else
-      return nil
     end
+    
+    return nil
+  end
+  
+  def self.find_or_create(region, realm, name)
+    
+    unless @character = Character.find_by_realm(region, realm, name)
+      bn = Character.get_from_battlenet(region, realm, name)
+      realm = Realm.find_by_region_and_name(region, realm)
+      @character = realm.characters.create(bn) unless realm.nil?
+    end
+    
+    (@character.nil? || @character.id.nil?) ? nil : @character
   end
 end

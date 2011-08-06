@@ -4,6 +4,7 @@ WowWishlist::Application.routes.draw do
   resources :characters do
     collection do
       get 'search'
+      get 'retrieve'
     end
   end
   

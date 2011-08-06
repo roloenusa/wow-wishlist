@@ -125,4 +125,25 @@ describe Character do
       character_duplicate.update_from_battlenet.should == false
     end
   end
+  
+  describe "find or create" do
+    
+    it "should respond to :find_or_create" do
+      Character.should respond_to(:find_or_create)
+    end
+    
+    it "should return a character if it's success" do
+      lambda do
+        character = Character.find_or_create(@realm.region, @realm.name, @attr[:name])
+        character.class.should == Character
+      end.should change(Character, :count).by(1)
+    end
+    
+    it "should return nil if it's failure" do
+      lambda do
+        nil_value = Character.find_or_create(@realm.region, @realm.name, "fakename")
+        nil_value.should be_nil
+      end.should_not change(Character, :count)
+    end
+  end
 end
