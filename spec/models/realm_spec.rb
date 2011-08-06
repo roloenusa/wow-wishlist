@@ -51,4 +51,25 @@ describe Realm do
       Realm.save_from_battlenet(realms_array)
     end.should change(Realm, :count).by(2)
   end
+  
+  describe "search functionality" do
+  
+    before(:each) do
+      @realm = Realm.create(@attr)
+    end
+    
+    it "should respond to :find_by_region_and_name" do
+      Realm.should respond_to(:find_by_region_and_name)
+    end
+    
+    it "should return nil if nothing is found" do
+      realm_found = Realm.find_by_region_and_name(@realm.region, "#{@realm.name}oooo")
+      realm_found.should be_nil
+    end
+
+    it "should return the correct server by name" do
+      realm_found = Realm.find_by_region_and_name(@realm.region, @realm.name)
+      realm_found.should == @realm
+    end
+  end
 end

@@ -15,9 +15,9 @@ class Realm < ActiveRecord::Base
     end
   end
   
-  def self.find_by_region_and_name(region, name, quantity = :first)
-    Realm.find(quantity, 
-                :conditions => ["name LIKE ? and region LIKE ?", 
-                name, region])
+  def self.find_by_region_and_name(region, name)
+    Realm.find(:first, 
+                :conditions => ["region = ? and name LIKE ?", 
+                region, name])
   end
 end

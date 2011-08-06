@@ -3,30 +3,36 @@ class Character < ActiveRecord::Base
   
   validates :name,    :presence => true
   validates :realm_id,  :presence => true
+  validates_uniqueness_of :name, :scope => :realm_id
 
 
   def update_from_battlenet
-    battlenet = Character.call_battlenet(self.realm.region, self.realm.name, self.name)    
-    self.update_attributes(battlenet) if battlenet[:status].nil?
+    battlenet = Character.get_from_battlenet(self.realm.region, self.realm.slug, self.name)    
+    unless battlenet.nil?
+      return self.update_attributes(battlenet) ? true : false
+    end
+    return false
   end
   
   
-  def self.find_or_retrieve(region, realm, name)
+  def self.find_by_realm(region, realm, name)
     
-    realm = Realm.find_by_region_and_name(region, realm)
-    character = realm.characters.find_by_name(name.capitalize)
-    
-    if character.nil?
-      bn = call_battlenet(region, realm.slug, name)
-      character = realm.characters.build(bn) if bn[:status].nil?
-      return character if character.save
+    if realm = Realm.find_by_region_and_name(region, realm)
+      if character = realm.characters.find_by_name(name.capitalize)
+        return character
+      end
     end
   end
   
   
-  def self.call_battlenet(region, realm, name)
-    bn = BattleNet::getCharacter(:region => region, :realm => realm, :name => name)
-    bn.delete(:realm)
-    return bn
+  def self.get_from_battlenet(region, realm_slug, name)
+    bn = BattleNet::getCharacter(:region => region, :realm => realm_slug, :name => name)
+    if bn[:status].nil?
+      bn.delete(:realm)
+      bn.delete(:status)
+      return bn
+    else
+      return nil
+    end
   end
 end

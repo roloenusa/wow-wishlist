@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Character do
   
   before(:each) do
+    @realm = Factory(:realm)
     @attr = {
       :lastmodified       => 1311477650000,
       :name               => "Sodastereo",
@@ -16,45 +17,112 @@ describe Character do
   end
   
   it "should create the character" do
-    Character.create!(@attr)
+    @realm.characters.create!(@attr)
   end
   
-  it "should require a name" do
-    character = Character.new(@attr.merge(:name => ""))
-    character.should_not be_valid
+  describe "validation" do
+  
+    it "should require a name" do
+      character = @realm.characters.new(@attr.merge(:name => ""))
+      character.should_not be_valid
+    end
+
+    it "should require a realm" do
+      character = @realm.characters.new(@attr)
+      character.realm_id = nil
+      character.should_not be_valid
+    end
   end
   
-  it "should require a realm" do
-    character = Character.new(@attr.merge(:realm => nil))
-    character.should_not be_valid
+  describe "realm association" do
+    
+    before(:each) do
+      @character = @realm.characters.create(@attr)
+    end
+    
+    it "should have a realm attribute" do
+      @character.should respond_to(:realm)
+    end
+    
+    it "should have the right realm" do
+      @character.realm_id.should == @realm.id
+      @character.realm.should == @realm
+    end
   end
   
   describe "BattleNet api integration" do
     
     before(:each) do
-      @realm = Factory(:realm)
-      @realm.save
-      @character = Factory(:character, :realm => @realm)
-      @character.save
+      @character = @realm.characters.new(@attr)
     end
+    
+    it "should respond to :get_from_battlenet" do
+      Character.should respond_to(:get_from_battlenet)
+    end
+    
+    it "should get a valid character" do
+      bn = Character.get_from_battlenet('us', 'sargeras', 'sodastereo')
+      bn[:name].should == 'Sodastereo'
+    end
+    
+    it "should be nil for invalid characters" do
+      bn = Character.get_from_battlenet('us', 'sargeras', '')
+      bn.should == nil
+    end
+  end
   
+  describe "find characters by region" do
+    
+    before(:each) do
+      @character = @realm.characters.create(@attr)
+    end
+    
+    it "should respond to :find_by_realm" do
+      Character.should respond_to(:find_by_realm)
+    end
+    
+    it "should find the correct character" do
+      character_found = Character.find_by_realm(@character.realm.region, @character.realm.name, @character.name)
+      character_found.should == @character
+    end
+    
+    it "should return nil if the character is not found" do
+      character_found = Character.find_by_realm(@character.realm.region, @character.realm.name, "fakename")
+      character_found.should be_nil
+    end
+    
+    it "should return nil if the realm is not found" do
+      character_found = Character.find_by_realm(@character.realm.region, "fakename", @character.name)
+      character_found.should be_nil
+    end
+  end
+  
+  describe "update from battlenet" do
+    before(:each) do
+      @character = @realm.characters.build(@attr)
+    end
+    
     it "should respond to :update_from_battlenet" do
       @character.should respond_to(:update_from_battlenet)
     end
-        
-    it "should not save the character if the status is not nil" do
-      @character.name = ""
-      @character.update_from_battlenet
-      @character.reload
-      @character.name.should == ""
+    
+    it "should return true if the update is successful" do
+      @character.update_attributes(:level => 1)
+      @character.update_from_battlenet.should == true
+      @character.level.should == @attr[:level]
     end
     
-    it "should update an existing record" do
-      level = @character.level
-      @character.level = 1000
-      @character.update_from_battlenet
-      @character.reload
-      @character.level.should == level
+    it "should return false if it doesn't exist in battlent" do
+      @character.update_attributes(:name => "fakename")
+      @character.update_from_battlenet.should == false
+      @character.name.should == "fakename"
+    end
+    
+    it "should return false if the character exists already" do
+      @character.save
+      character_duplicate = @realm.characters.build(@attr)
+      character_duplicate.should_not be_valid
+      character_duplicate.update_from_battlenet.should == false
     end
   end
 end
