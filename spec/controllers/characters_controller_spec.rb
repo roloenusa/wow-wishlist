@@ -3,6 +3,19 @@ require 'spec_helper'
 describe CharactersController do
   render_views
   
+  describe "GET index" do
+    
+    it "should be success" do
+      get :index
+      respond.should be_success
+    end
+    
+    it "should have the right title" do
+      get :index
+      response.should have_selector("title", :content => "Characters")
+    end
+  end
+  
   describe "GET 'show'" do
     before(:each) do
       @realm = Factory(:realm)

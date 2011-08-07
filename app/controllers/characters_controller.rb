@@ -9,9 +9,8 @@ class CharactersController < ApplicationController
   end
   
   def index
-    region = params[:region]
-    realm = params[:realm]
-    character = params[:character]
+    @title = "Characters"
+    @characters = Character.order("id DESC").limit(10)
   end
   
   def new

@@ -9,3 +9,25 @@
 .floatright {
 	float:right;
 }
+
+.floatleft {
+	float:left;
+}
+
+.character-compact {
+	clear:both;
+	background-color:#FFF2E1;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #866B26;
+	padding: 10px;
+}
+
+.avatar {
+	float:left;
+}
+
+.info-compact {
+	padding: 10px;
+	margin-left: 40px;
+}
