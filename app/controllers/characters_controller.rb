@@ -1,8 +1,11 @@
 class CharactersController < ApplicationController
   
   def show
-    @character = Character.find(params[:id])
-    @title = "#{@character.realm.name} | #{@character.name}"
+    if @character = Character.find_by_id(params[:id])
+      @title = "#{@character.realm.name} | #{@character.name}"
+    else
+      render 'search'
+    end
   end
   
   def index
@@ -13,10 +16,23 @@ class CharactersController < ApplicationController
   
   def new
     @title = "New"
-    
     render 'search'
   end
   
+  def update
+    @character = Character.find(params[:id])
+    
+    if @character.update_from_battlenet
+      flash[:success] = "We have updated #{@character.name} from Battle.net!"
+      redirect_to @character
+    else
+      name = @character.name
+      @character.delete
+      flash.now[:error] = "We could not find #{name} at Battle.net!"
+      render 'search'
+    end
+      
+  end
   
   def search
     @title = "Search"

@@ -35,7 +35,15 @@ describe CharactersController do
         get :show, :id => @character
         response.should have_selector("img", :src => "http://us.battle.net/static-render/us/#{@character.thumbnail}")
       end
-    end   
+    end  
+    
+    describe "failure" do
+      
+      it "should redirect to the index" do
+        get :show, :id => -1
+        response.should render_template('search')
+      end
+    end 
   end
   
   describe "GET 'search'" do 
@@ -68,6 +76,58 @@ describe CharactersController do
       it "should have a flash :error message" do
         get :search, :realm => "fakename", :name => @character.name, :region => @realm.region
         flash[:error] =~ /we were unable to find/i
+      end
+    end
+  end
+  
+  describe "GET 'update'" do
+    
+    before(:each) do
+      @realm = Factory(:realm)
+      @character = Factory(:character, :realm => @realm)
+    end
+    
+    describe "success" do
+      
+      before(:each) do
+        @level = @character.level
+        @character.level = 100
+        @character.save
+      end
+      
+      it "should change the user's attributes" do
+        put :update, :id => @character
+        @character.reload
+        @character.level.should == @level
+      end
+      
+      it "should redirect the user to the character page" do
+        put :update, :id => @character
+        response.should redirect_to(character_path(@character))
+      end
+      
+      it "should have a message" do
+        put :update, :id => @character
+        flash[:success].should =~ /updated/i
+      end
+    end
+    
+    describe "failure" do
+      
+      before(:each) do
+        @character.name = "fakename"
+        @character.save
+      end
+      
+      it "should delete the character" do
+        lambda do
+          put :update, :id => @character
+        end.should change(Character, :count).by(-1)
+      end
+      
+      it "should render the search page" do
+        put :update, :id => @character
+        response.should render_template('search')
       end
     end
   end

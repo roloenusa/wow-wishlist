@@ -4,11 +4,13 @@
   <h2><%= @character.realm.name %></h2>
 </div>
 <hr />
+<div class ="floatright">
+  	<%= button_to "Update", character_path(@character), :method => :put %>
+</div>
 <div class="round details">
   <strong>Last Modified:</strong> <%= Time.at(@character.lastmodified / 1000).strftime("%m/%d/%y %I:%M%p") %><br />             
   <strong>Realm:</strong> <%= @character.realm.name %><br />
   <strong>Class:</strong> <%= @character.klass %><br />             
   <strong>Level:</strong> <%= @character.level %><br />            
-  <strong>Achivement Points:</strong> <%= @character.achievementpoints %>
-</div>  
-                
+  <strong>Achievement Points:</strong> <%= @character.achievementpoints %>
+</div>         
