@@ -1,6 +1,8 @@
 class Character < ActiveRecord::Base
   belongs_to :realm
   
+  has_many :relationships
+  
   validates :name,    :presence => true
   validates :realm_id,  :presence => true
   validates_uniqueness_of :name, :scope => :realm_id

@@ -7,7 +7,7 @@ describe CharactersController do
     
     it "should be success" do
       get :index
-      respond.should be_success
+      response.should be_success
     end
     
     it "should have the right title" do

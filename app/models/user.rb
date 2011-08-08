@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  
+  has_many :relationships,  :dependent => :destroy
+  has_many :claimed,        :through => :relationships, :source => :character
 
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation
@@ -20,6 +23,18 @@ class User < ActiveRecord::Base
   
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
+  end
+  
+  def claim!(character)
+    self.relationships.create!(:character_id => character.id)
+  end
+  
+  def claimed?(character)
+    self.relatinships.find_by_character_id(character)
+  end
+  
+  def unclaim!(character)
+    Relationship.find(character).destroy
   end
   
   def self.authenticate(email, password)

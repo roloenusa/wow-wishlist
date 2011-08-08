@@ -128,4 +128,40 @@ describe User do
       end
     end
   end
+  
+  describe "relationships" do
+    
+    before(:each) do
+      @user = Factory(:user)
+      @realm = Factory(:realm)
+      @character = Factory(:character, :realm => @realm)
+    end
+    
+    it "should respond to :relationships" do 
+      @user.should respond_to(:relationships)
+    end
+    
+    it "should have a :claim method" do
+      @user.should respond_to(:claim!)
+    end
+    
+    it "should have a :claimed? method" do
+      @user.should respond_to(:claimed?)
+    end
+    
+    it "should respond to :unclaim!" do
+      @user.should respond_to(:unclaim!)
+    end
+    
+    it "should claim a character" do
+        @user.claim!(@character)
+        @user.claimed.should include(@character)
+    end
+    
+    it "should unclaim a character" do
+      @user.claim!(@character)
+      @user.unclaim!(@character)
+      @user.claimed.should_not include(@character)
+    end
+  end
 end
