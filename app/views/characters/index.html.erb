@@ -1,14 +1,7 @@
 <h1>Characters</h1>
-
-<% @characters.each do |character|%>
-<div class = "round character-compact">
-	<div class="avatar floatleft">
-		<img src="http://us.battle.net/static-render/us/<%= character.thumbnail %>" width=40 height=40 />
-	</div>
-	<div class="info-compact"> 
-		<strong><%= link_to character.name, character %> - <%= character.level %></strong><br />
-		<strong>Achievement Points:</strong> <%=character.achievementpoints%>
-	</div>
-</div>
-<br />
-<% end %>
+<hr />
+<h2>Search for your character</h2>
+<%= render 'search_form'%>
+<hr />
+<h2>Latest Additions</h2>
+<%= render 'characters_compact'%>

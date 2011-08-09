@@ -1,4 +1,11 @@
 <h1><%= @user.name %></h1>
-<% if current_user == @user %>
-  <h2><%= @user.email %> <%= link_to "edit", edit_user_path(current_user) %></h2>
+<% if current_user?@user %>
+	<h2><%= @user.email %> <%= link_to "edit", edit_user_path(current_user) %></h2>
+  	<hr />
+	<% if @characters.count > 0 %>
+		<%= render 'characters/characters_compact' %>
+	<% else %>
+		You don't have any users yet! Head to the <%= link_to "search", characters_path %> 
+		and claim your toon! 
+	<% end %>
 <% end %>
