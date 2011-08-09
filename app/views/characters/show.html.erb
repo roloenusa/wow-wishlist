@@ -5,7 +5,8 @@
 </div>
 <hr />
 <div class ="floatright">
-  	<%= button_to "Update", character_path(@character), :method => :put %>
+  <%= button_to "Update", character_path(@character), :method => :put %>
+  <%= render 'users/claim_form' %>
 </div>
 <div class="round details">
   <strong>Last Modified:</strong> <%= Time.at(@character.lastmodified / 1000).strftime("%m/%d/%y %I:%M%p") %><br />             

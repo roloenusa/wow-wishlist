@@ -30,11 +30,11 @@ class User < ActiveRecord::Base
   end
   
   def claimed?(character)
-    self.relatinships.find_by_character_id(character)
+    self.relationships.find_by_character_id(character)
   end
   
   def unclaim!(character)
-    Relationship.find(character).destroy
+    Relationship.find_by_character_id(character).destroy
   end
   
   def self.authenticate(email, password)

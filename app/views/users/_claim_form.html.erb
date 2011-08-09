@@ -1,0 +1,9 @@
+<% unless current_user?(@user) %>
+  <div id="claim_form">
+    <% if current_user.claimed?(@character) %>
+      <%= render 'users/unclaim' %>
+    <% else %>
+      <%= render 'users/claim' %>
+    <% end %>
+  </div>
+<% end %>
