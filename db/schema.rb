@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110807232927) do
+ActiveRecord::Schema.define(:version => 20110810213823) do
 
   create_table "characters", :force => true do |t|
     t.integer  "lastmodified"
@@ -27,6 +27,43 @@ ActiveRecord::Schema.define(:version => 20110807232927) do
   end
 
   add_index "characters", ["name"], :name => "index_characters_on_name_and_realm", :unique => true
+
+  create_table "items", :force => true do |t|
+    t.integer  "disenchantingskillrank"
+    t.string   "description"
+    t.string   "name"
+    t.string   "icon"
+    t.integer  "stackable"
+    t.integer  "itembind"
+    t.string   "bonusstats"
+    t.string   "itemspells"
+    t.integer  "buyprice"
+    t.integer  "itemclass"
+    t.integer  "itemsubclass"
+    t.integer  "containerslots"
+    t.integer  "inventorytype"
+    t.boolean  "equippable"
+    t.integer  "itemlevel"
+    t.integer  "maxcount"
+    t.integer  "maxdurability"
+    t.integer  "minfactionid"
+    t.integer  "minreputation"
+    t.integer  "quality"
+    t.integer  "sellprice"
+    t.integer  "requiredlevel"
+    t.integer  "requiredskill"
+    t.integer  "requiredskillrank"
+    t.string   "socketinfo"
+    t.string   "itemsource"
+    t.integer  "basearmor"
+    t.boolean  "hassockets"
+    t.boolean  "isauctionable"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "items", ["id"], :name => "index_items_on_id"
+  add_index "items", ["name"], :name => "index_items_on_name"
 
   create_table "realms", :force => true do |t|
     t.string   "region"

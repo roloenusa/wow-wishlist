@@ -50,7 +50,7 @@ describe Character do
     end
   end
   
-  describe "BattleNet api integration" do
+  describe "Battlenet api integration" do
     
     before(:each) do
       @character = @realm.characters.new(@attr)
@@ -102,19 +102,19 @@ describe Character do
       @character = @realm.characters.build(@attr)
     end
     
-    it "should respond to :update_from_battlenet" do
-      @character.should respond_to(:update_from_battlenet)
+    it "should respond to :update_from_battlenet?" do
+      @character.should respond_to(:update_from_battlenet?)
     end
     
     it "should return true if the update is successful" do
       @character.update_attributes(:level => 1)
-      @character.update_from_battlenet.should == true
+      @character.update_from_battlenet?.should == true
       @character.level.should == @attr[:level]
     end
     
     it "should return false if it doesn't exist in battlent" do
       @character.update_attributes(:name => "fakename")
-      @character.update_from_battlenet.should == false
+      @character.update_from_battlenet?.should == false
       @character.name.should == "fakename"
     end
     
@@ -122,7 +122,7 @@ describe Character do
       @character.save
       character_duplicate = @realm.characters.build(@attr)
       character_duplicate.should_not be_valid
-      character_duplicate.update_from_battlenet.should == false
+      character_duplicate.update_from_battlenet?.should == false
     end
   end
   

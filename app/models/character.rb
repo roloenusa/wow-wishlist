@@ -8,7 +8,7 @@ class Character < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :realm_id
 
 
-  def update_from_battlenet
+  def update_from_battlenet?
     battlenet = Character.get_from_battlenet(self.realm.region, self.realm.slug, self.name)    
     unless battlenet.nil?
       return self.update_attributes(battlenet) ? true : false
@@ -28,7 +28,7 @@ class Character < ActiveRecord::Base
   
   
   def self.get_from_battlenet(region, realm_slug, name)
-    bn = BattleNet::getCharacter(:region => region, :realm => realm_slug, :name => name)
+    bn = Battlenet::get_character(:region => region, :realm => realm_slug, :name => name)
     if bn[:status].nil?
       bn.delete(:realm)
       bn.delete(:status)

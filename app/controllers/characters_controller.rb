@@ -21,7 +21,7 @@ class CharactersController < ApplicationController
   def update
     @character = Character.find(params[:id])
     
-    if @character.update_from_battlenet
+    if @character.update_from_battlenet?
       flash[:success] = "We have updated #{@character.name} from Battle.net!"
       redirect_to @character
     else
@@ -35,6 +35,10 @@ class CharactersController < ApplicationController
   
   def search
     @title = "Search"
+    
+    params[:region].gsub!(/ /,'')
+    params[:realm].gsub!(/ /,'')
+    params[:name].gsub!(/ /,'')
     
     @character = Character.find_or_create(params[:region], params[:realm], params[:name])
     if @character.nil?
