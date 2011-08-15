@@ -8,9 +8,10 @@ WowWishlist::Application.routes.draw do
     end
   end
   
+  resources :items
   resources :users
+  resources :realms,        :only => [:index]
   resources :sessions,      :only => [:new, :create, :destroy]
-  resources :realms
   resources :relationships, :only => [:create, :destroy]
   
   match '/signup',  :to => 'users#new'

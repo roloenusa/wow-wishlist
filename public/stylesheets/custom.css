@@ -31,3 +31,64 @@
 	padding: 10px;
 	margin-left: 40px;
 }
+
+/*
+"qualityid","qualityname","qualitycolor"
+"0","Poor","9D9D9D"
+"1","Common","FFFFFF"
+"2","Uncommon","1EFF00"
+"3","Rare","0070DD"
+"4","Epic","A335EE"
+"5","Legendary","FF8000"
+"6","Artifact","E5CC80"
+"7","Heirloom","E5CC80"
+"8","Quality 8","FFFF98"
+"9","Quality 9","71D5FF"
+*/
+.Poor {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #9D9D9D;
+}
+
+.Common {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #FFFFFF;
+}
+
+.Uncommon {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #1EFF00;
+}
+
+.Rare {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #0070DD;
+}
+
+.Epic {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #A335EE;
+}
+
+.Legendary {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #FF8000;
+}
+
+.Artifact {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #E5CC80;
+}
+
+.Heirloom {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #E5CC80;
+}

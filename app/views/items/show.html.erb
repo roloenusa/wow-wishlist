@@ -1,0 +1,10 @@
+<div class="avatar push-1"><%= icon_image @item.icon %></div>
+<div class="prepend-4">
+  <h1><%= @item.name %></h1>
+  <h2><%= @item.description %></h2>
+</div>
+<hr />
+<div class="round details">
+	<%= Battlenet::item_class[@item.itemclass] %><br />
+	<%= Battlenet::item_subclass[@item.itemclass][@item.itemsubclass][0]%><br />
+</div>
