@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110810213823) do
+ActiveRecord::Schema.define(:version => 20110815230730) do
 
   create_table "characters", :force => true do |t|
     t.integer  "lastmodified"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20110810213823) do
     t.boolean  "isauctionable"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "weaponinfo"
   end
 
   add_index "items", ["id"], :name => "index_items_on_id"

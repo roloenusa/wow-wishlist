@@ -64,6 +64,18 @@ describe Item do
       item = Item.get_from_battlenet(@attr[:id])
       item.should == @attr
     end
+    
+    it "should respond to :prepare!" do
+      item = Item.new()
+      item.should respond_to(:prepare!)
+    end
+    
+    it "should turn a string into a hash" do
+      item = Item.new(@attr)
+      item.prepare!
+      item.bonusstats.is_a?(Array).should == true
+      item.itemspells.is_a?(Array).should == true
+      item.itemsource.is_a?(Hash).should == true
+    end
   end
-
 end

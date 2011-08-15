@@ -26,7 +26,7 @@ describe ItemsController do
     
     it "should have the right name" do
       get :show, :id => @item
-      response.should have_selector("h1", :content => @item.name)
+      response.should have_selector("h2", :content => @item.name)
     end
     
     it "should have a item class mapped" do

@@ -1,7 +1,21 @@
+<h2 class="<%= Battlenet::quality[@item.quality] %>"><%= @item.name %></h2>
 <div class="avatar push-1"><%= icon_image @item.icon %></div>
 <div class="prepend-4">
-  <h1><%= @item.name %></h1>
-  <h2><%= @item.description %></h2>
+  <% if @item.itemclass == 2 %>
+    <%= Battlenet::inventory_type[@item.inventorytype] %> <br />
+    <%= Battlenet::item_subclass[@item.itemclass][@item.itemsubclass][1] %> <br />
+    <%= "#{@item.weaponinfo[:damage][0][:mindamage]} - #{@item.weaponinfo[:damage][0][:maxdamage]} Damage" %> <br />
+    <%= "Speed #{@item.weaponinfo[:weaponspeed]}" %> <br />
+    <%= "(#{@item.weaponinfo[:dps].round(1)} damage per second)" %> <br /> 
+  <% end %>
+  
+  <% @item.bonusstats.each do |stat| %>
+    <%= "+#{stat[:amount]} --stat mapping pending" %><br />
+  <% end %>
+  
+  <%= "Item Level #{@item.itemlevel}" unless @item.itemlevel.nil? %><br />  
+  <%= @item.description unless @item.description.nil? %><br />
+  <%= "Durability #{@item.maxdurability}" unless @item.maxdurability <= 0 %>
 </div>
 <hr />
 <div class="round details">

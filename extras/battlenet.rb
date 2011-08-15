@@ -22,6 +22,7 @@ module Battlenet
     ["Poor", "Common", "Uncommon", "Rare", "Epic", "Legendary", "Artifact", "Heirloom", "Quality 8", "Quality 9"]
   end
   
+  
   def self.inventory_type
     ["None", "Head", "Neck", "Shoulder", "Shirt", "Chest", "Waist", "Legs", "Feet", "Wrist", "Relic"]
   end
@@ -39,6 +40,10 @@ module Battlenet
       171 => "Alchemy",
       165 => "Leatherworking",
       164 => "Blacksmithing" }
+  end
+  
+  def self.item_bind
+    [nil, "Binds when picked up", "Binds when equipped"]
   end
   
   def self.item_class
