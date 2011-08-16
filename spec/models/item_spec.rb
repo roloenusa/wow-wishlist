@@ -78,4 +78,38 @@ describe Item do
       item.itemsource.is_a?(Hash).should == true
     end
   end
+  
+  describe "item creation" do
+    
+    it "should respond to :find_or_create" do
+      Item.should respond_to(:find_or_create)
+    end
+    
+    describe "success" do
+        
+      it "should find an item in the database" do
+        @item = Factory(:item)
+        item = Item.find_or_create(@item.id)
+        item.should == @item
+      end
+    
+      it "should get the item from battlenet" do
+        lambda do
+          item = Item.find_or_create(@attr[:id])
+          item.id.should == @attr[:id]
+          item.name.should == @attr[:name]
+        end.should change(Item, :count).by(1)
+      end
+    end
+    
+    describe "failure" do
+      
+      it "should return nil if the item is not found in battlenet" do
+        lambda do
+          item = Item.find_or_create(-1)
+          item.should be_nil
+        end.should_not change(Item, :count)
+      end
+    end
+  end
 end

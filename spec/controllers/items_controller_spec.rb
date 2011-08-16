@@ -34,5 +34,4 @@ describe ItemsController do
       response.should have_selector("div", :content => Battlenet::item_class[@item.itemclass])
     end
   end
-
 end

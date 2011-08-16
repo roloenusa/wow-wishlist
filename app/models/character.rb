@@ -16,6 +16,10 @@ class Character < ActiveRecord::Base
     return false
   end
   
+  def prepare!
+    
+  end
+  
   
   def self.find_by_realm(region, realm, name)
     

@@ -2,7 +2,7 @@ class RelationshipsController < ApplicationController
   before_filter :authenticate
   
   def create
-    @character = User.find(params[:relationship][:character_id])
+    @character = Character.find(params[:relationship][:character_id])
     current_user.claim!(@character)
     respond_to do |format|
       format.html { redirect_to @character }

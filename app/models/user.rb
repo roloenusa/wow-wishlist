@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   end
   
   def claimed?(character)
+    puts "Searching for character"
     self.relationships.find_by_character_id(character)
   end
   
