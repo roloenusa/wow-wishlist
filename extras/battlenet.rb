@@ -27,6 +27,10 @@ module Battlenet
     ["None", "Head", "Neck", "Shoulder", "Shirt", "Chest", "Waist", "Legs", "Feet", "Wrist", "Relic"]
   end
   
+  def self.outfit
+    [:head, :neck, :shoulder, :back, :chest, :shirt, :tabard, :wrist, :hands, :waist, :legs, :feet, :finger1, :finger2, :trinket1, :trinket2, :mainhand, :offhand, :ranged]
+  end
+  
   def self.skill_line
     { 185 => "Cooking",
       773 => "Inscription",
@@ -205,11 +209,13 @@ module Battlenet
     item_hash = clean_hash(item_hash)
   end
 	  
-  def self.get_character(params = {})
-    params[:region] = :us if params[:region].nil?
-    params[:type] = "character"
-    params[:query] = "#{params[:realm]}/#{params[:name]}" + (params[:options].nil? ? "" : "?fields=#{params[:fields].join(',')}")
-
+  def self.get_character(region, realm, name, *fields)
+    params = {
+      :region => region,
+      :type   => "character",
+      :query  => "#{realm}/#{name}?fields=#{fields.join(',')}"
+      }
+    
     character_hash = call_battlenet(params)
     character_hash = clean_hash(character_hash)
   end
@@ -260,10 +266,11 @@ private
   
     result = {}
     test.each do |k, v|
-      
       if v.is_a?(Array)
         a = []
-        v.each do |t| a << clean_hash(t) end
+        v.each do |t| 
+          (t.is_a?(Hash) || t.is_a?(Array)) ? a << clean_hash(t) : a << t 
+        end
         v = a
       end
       

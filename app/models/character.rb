@@ -16,10 +16,6 @@ class Character < ActiveRecord::Base
     return false
   end
   
-  def prepare!
-    
-  end
-  
   
   def self.find_by_realm(region, realm, name)
     
@@ -32,10 +28,11 @@ class Character < ActiveRecord::Base
   
   
   def self.get_from_battlenet(region, realm_slug, name)
-    bn = Battlenet::get_character(:region => region, :realm => realm_slug, :name => name)
+    bn = Battlenet::get_character(region, realm_slug, name, 'items')
     if bn[:status].nil?
       bn.delete(:realm)
       bn.delete(:status)
+      bn[:items] = bn[:items].to_s unless bn[:items].nil?
       return bn
     end
     

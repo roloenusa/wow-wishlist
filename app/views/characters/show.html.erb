@@ -14,4 +14,16 @@
   <strong>Class:</strong> <%= @character.klass %><br />             
   <strong>Level:</strong> <%= @character.level %><br />            
   <strong>Achievement Points:</strong> <%= @character.achievementpoints %>
-</div>         
+</div>
+
+<div class="outfittable">
+  <table>
+    <% Battlenet::outfit.each do |piece| %>
+      <% unless @character.items[piece].nil? %>
+    <tr>
+      <td class="<%= Battlenet::quality[@character.items[piece][:quality]]%>"><%= piece %></td><td><%= link_to @character.items[piece][:name], item_path(@character.items[piece][:id]) %></td>
+    </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>   

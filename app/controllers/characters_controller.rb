@@ -3,6 +3,7 @@ class CharactersController < ApplicationController
   def show
     if @character = Character.find_by_id(params[:id])
       @title = "#{@character.realm.name} | #{@character.name}"
+      @character.items = eval(@character.items ||= "{}")
     else
       render 'search'
     end
@@ -29,8 +30,7 @@ class CharactersController < ApplicationController
       @character.delete
       flash.now[:error] = "We could not find #{name} at Battle.net!"
       render 'search'
-    end
-      
+    end    
   end
   
   def search
