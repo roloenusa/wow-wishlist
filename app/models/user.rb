@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   
   has_many :relationships,  :dependent => :destroy
   has_many :claimed,        :through => :relationships, :source => :character
+  
+  has_many :triptyches,     :dependent => :destroy
+  has_many :loot,           :through => :triptyches, :source => :item
 
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation
@@ -21,21 +24,10 @@ class User < ActiveRecord::Base
   
   before_save :encrypt_password
   
+  
+  # authentication
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
-  end
-  
-  def claim!(character)
-    self.relationships.create!(:character_id => character.id)
-  end
-  
-  def claimed?(character)
-    puts "Searching for character"
-    self.relationships.find_by_character_id(character)
-  end
-  
-  def unclaim!(character)
-    Relationship.find_by_character_id(character).destroy
   end
   
   def self.authenticate(email, password)
@@ -51,6 +43,31 @@ class User < ActiveRecord::Base
     (user && user.salt == cookie_salt) ? user : nil
   end
   
+  # relationships
+  def claim!(character)
+    self.relationships.create!(:character_id => character.id)
+  end
+  
+  def claimed?(character)
+    self.relationships.find_by_character_id(character)
+  end
+  
+  def unclaim!(character)
+    Relationship.find_by_character_id(character).destroy
+  end
+  
+  # triptyches
+  def ninja!(item)
+    self.triptyches.create!(:item_id => item.id)
+  end
+  
+  def ninjaed?(item, character)
+    self.triptyches.items.find_by_character(characters)
+  end
+  
+  def trash!(item, character = nil)
+    Triptych.find(:first, :conditions => ["user_id = ? and item_id = ? and character_id =?", self.id, item, character]).destroy
+  end
 
 private
   def encrypt_password

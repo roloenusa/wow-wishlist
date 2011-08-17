@@ -164,4 +164,41 @@ describe User do
       @user.claimed.should_not include(@character)
     end
   end
+  
+  describe "triptychs" do
+    
+    before(:each) do
+      @user = Factory(:user)
+      @realm = Factory(:realm)
+      @character = Factory(:character, :realm => @realm)
+      @item = Factory(:item)
+    end
+    
+    it "should respond to triptyches" do
+      @user.should respond_to(:triptyches)
+    end
+    
+    it "should have ninja method" do
+      @user.should respond_to(:ninja!)
+    end
+    
+    it "should have a ninjaed? method" do
+      @user.should respond_to(:ninjaed?)
+    end
+    
+    it "should have a trash! method" do
+      @user.should respond_to(:trash!)
+    end
+    
+    it "should ninja an item" do
+      @user.ninja!(@item)
+      @user.loot.should include(@item)
+    end
+    
+    it "should trash the item" do
+      @user.ninja!(@item)
+      @user.trash!(@item)
+      @user.loot.should_not include(@item)
+    end
+  end
 end
