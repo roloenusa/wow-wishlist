@@ -1,21 +1,24 @@
 <h1><%= @user.name %></h1>
 <% if current_user?@user %>
 	<h2><%= @user.email %> <%= link_to "edit", edit_user_path(current_user) %></h2>
-  	<hr />
+  <hr />
+    
+  <div class="span-11 colborder">
+  <h2>My Toons</h2>
 	<% if @characters.count > 0 %>
-		<h2>My Toons</h2>
 		<%= render 'characters/characters_compact' %>
 	<% else %>
 		You don't have any users yet! Head to the <%= link_to "search", characters_path %> 
 		and claim your toon! 
 	<% end %>
-	
-	<hr />
+  </div>
+	<div class="span-11 last">
+  <h2>My Loot</h2>
 	<% if @items.count > 0 %>
-		<h2>My Loot</h2>
 		<%= render 'items/item_compact' %>
 	<% else %>
-		You don't have any users yet! Head to the
+		You don't have any items yet! Head to the
 		and claim your toon! 
 	<% end %>
+  </div>
 <% end %>

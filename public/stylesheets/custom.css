@@ -1,5 +1,33 @@
-/* Round corners */
 
+body {
+  background: rgb(242,246,248); /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(242,246,248,1) 0%, rgba(216,225,231,1) 15%, rgba(181,198,208,1) 71%, rgba(224,239,249,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,246,248,1)), color-stop(15%,rgba(216,225,231,1)), color-stop(71%,rgba(181,198,208,1)), color-stop(100%,rgba(224,239,249,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(242,246,248,1) 0%,rgba(216,225,231,1) 15%,rgba(181,198,208,1) 71%,rgba(224,239,249,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(242,246,248,1) 0%,rgba(216,225,231,1) 15%,rgba(181,198,208,1) 71%,rgba(224,239,249,1) 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, rgba(242,246,248,1) 0%,rgba(216,225,231,1) 15%,rgba(181,198,208,1) 71%,rgba(224,239,249,1) 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, rgba(242,246,248,1) 0%,rgba(216,225,231,1) 15%,rgba(181,198,208,1) 71%,rgba(224,239,249,1) 100%); /* W3C */
+}
+
+header {
+  padding: 20px;
+}
+
+footer {
+  padding: 20px;
+}
+
+section {
+  padding: 20px;
+  background: #fff;
+}
+
+.container {
+  background: #ffffff;
+}
+
+/* Round corners */
 .round {
   -moz-border-radius:    10px;
   -webkit-border-radius: 10px;
@@ -45,74 +73,11 @@
 "8","Quality 8","FFFF98"
 "9","Quality 9","71D5FF"
 */
-.Poor {
-  color:        #9D9D9D;
-  /*
-	border-style: solid;
-	border-width: 2px;
-	border-color: #9D9D9D;
-  */
-}
-
-.Common {
-  color:        #FFFFFF;
-  /*
-	border-style: solid;
-	border-width: 2px;
-	border-color: #FFFFFF;
-  */
-}
-
-.Uncommon {
-  color:        #1EFF00;
-	/*
-  border-style: solid;
-	border-width: 2px;
-	border-color: #1EFF00;
-  */
-}
-
-.Rare {
-  color:        #0070DD;
-  /*
-	border-style: solid;
-	border-width: 2px;
-	border-color: #0070DD;
-  */
-}
-
-.Epic {
-  color:        #A335EE;
-  /*
-	border-style: solid;
-	border-width: 2px;
-	border-color: #A335EE;
-  */
-}
-
-.Legendary {
-  color:        #FF8000;
-  /*
-	border-style: solid;
-	border-width: 2px;
-	border-color: #FF8000;
-  */
-}
-
-.Artifact {
-  color:        #E5CC80;
-  /*
-	border-style: solid;
-	border-width: 2px;
-	border-color: #E5CC80;
-  */
-}
-
-.Heirloom {
-  color:        #E5CC80;
-  /*
-	border-style: solid;
-	border-width: 2px;
-	border-color: #E5CC80;
-  */
-}
+.Poor {  color: #9D9D9D; }
+.Common { color: #FFFFFF; }
+.Uncommon { color: #1EFF00; }
+.Rare { color: #0070DD; }
+.Epic { color: #A335EE; }
+.Legendary { color: #FF8000; }
+.Artifact { color: #E5CC80; }
+.Heirloom { color: #E5CC80; }

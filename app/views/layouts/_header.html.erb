@@ -1,17 +1,8 @@
 <header>
-  <div id="header">
+  <div class="span-24 header">
     <h1>WoW Wishlist</h1>
-    <h2>The Subtitle</h2>
-    <ul>
-      <li><a href="#" class="active">3 Column <span>Holy Grail</span></a></li>
-      <li><a href="#">3 Column <span>Blog Style</span></a></li>
-      <li><a href="#">2 Column <span>Left Menu</span></a></li>
-      <li><a href="#">2 Column <span>Right Menu</span></a></li>
-      <li><a href="#">2 Column <span>Double Page</span></a></li>
-      <li><a href="#">1 Column <span>Full Page</span></a></li>
-      <li><a href="#">Stacked <span>columns</span></a></li>
-    </ul>
-    <p id="layoutdims">
+    <h2 class="alt">The Subtitle</h2>
+    <p>
       <% if signed_in? %>
         <%= link_to current_user.name, current_user %> | 
         <a href="<%= signout_path %>">Sign Out</a>
