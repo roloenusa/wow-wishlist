@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110817050712) do
+ActiveRecord::Schema.define(:version => 20110820063103) do
+
+  create_table "bounds", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "persona_id"
+    t.string   "persona_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bounds", ["item_id"], :name => "index_bounds_on_item_id"
+  add_index "bounds", ["persona_id", "persona_type", "item_id"], :name => "index_bounds_on_persona_id_and_persona_type_and_item_id", :unique => true
+  add_index "bounds", ["persona_id"], :name => "index_bounds_on_persona_id"
 
   create_table "characters", :force => true do |t|
     t.integer  "lastmodified"

@@ -12,6 +12,7 @@ WowWishlist::Application.routes.draw do
   resources :users
   resources :realms,        :only => [:index]
   resources :sessions,      :only => [:new, :create, :destroy]
+  resources :bounds,        :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
   
   match '/signup',  :to => 'users#new'

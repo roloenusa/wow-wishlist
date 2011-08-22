@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:id])
     @title = @user.name
     @characters = @user.claimed
+    @items = @user.items
   end
   
   def new

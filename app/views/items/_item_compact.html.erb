@@ -1,0 +1,12 @@
+<% @items.each do |item|%>
+<p>
+	<div class = "round character-compact">
+		<div class="avatar floatleft">
+			<%= icon_image item.icon, :size => "40x40" %>
+		</div>
+		<div class="info-compact"> 
+			<strong><%= link_to item.name, item %></strong><br />
+		</div>
+	</div>
+</p>
+<% end %>

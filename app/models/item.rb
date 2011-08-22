@@ -4,6 +4,8 @@ class Item < ActiveRecord::Base
   validates :name,  :presence => true
   validates :icon,  :presence => true
   
+  has_many :bounds,     :dependent => :destroy
+  
   def self.find_or_create(item_id) 
     
     unless item = Item.find_by_id(item_id)

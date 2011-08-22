@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   has_many :relationships,  :dependent => :destroy
   has_many :claimed,        :through => :relationships, :source => :character
   
-  has_many :triptyches,     :dependent => :destroy
-  has_many :loot,           :through => :triptyches, :source => :item
+  has_many :bounds,         :as => :persona, :dependent => :destroy
+  has_many :items,          :through => :bounds
 
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation
@@ -49,24 +49,24 @@ class User < ActiveRecord::Base
   end
   
   def claimed?(character)
-    self.relationships.find_by_character_id(character)
+    self.relationships.find_by_character_id(character.id)
   end
   
   def unclaim!(character)
-    Relationship.find_by_character_id(character).destroy
+    Relationship.find_by_character_id(character.id).destroy
   end
   
-  # triptyches
-  def ninja!(item)
-    self.triptyches.create!(:item_id => item.id)
+  # Bindings
+  def bind!(item)
+    self.bounds.create!(:item_id => item.id)
   end
   
-  def ninjaed?(item, character)
-    self.triptyches.items.find_by_character(characters)
+  def bound?(item)
+    self.bounds.find_by_item_id(item.id)
   end
   
-  def trash!(item, character = nil)
-    Triptych.find(:first, :conditions => ["user_id = ? and item_id = ? and character_id =?", self.id, item, character]).destroy
+  def unbind!(item)
+    self.bounds.find_by_item_id(item.id).destroy
   end
 
 private

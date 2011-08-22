@@ -165,40 +165,42 @@ describe User do
     end
   end
   
-  describe "triptychs" do
+  describe "bindings" do
     
     before(:each) do
       @user = Factory(:user)
-      @realm = Factory(:realm)
-      @character = Factory(:character, :realm => @realm)
       @item = Factory(:item)
     end
     
-    it "should respond to triptyches" do
-      @user.should respond_to(:triptyches)
+    it "should respond to bounds" do
+      @user.should respond_to(:bounds)
     end
     
-    it "should have ninja method" do
-      @user.should respond_to(:ninja!)
+    it "should respond to items" do
+      @user.should respond_to(:items)
     end
     
-    it "should have a ninjaed? method" do
-      @user.should respond_to(:ninjaed?)
+    it "should respond to bind!" do
+      @user.should respond_to(:bind!)
     end
     
-    it "should have a trash! method" do
-      @user.should respond_to(:trash!)
+    it "should bind the item" do
+      @user.bind!(@item)
+      @user.items.should include(@item)
     end
     
-    it "should ninja an item" do
-      @user.ninja!(@item)
-      @user.loot.should include(@item)
+    it "should respond to bound?" do
+      @user.should respond_to(:bound?)
     end
     
-    it "should trash the item" do
-      @user.ninja!(@item)
-      @user.trash!(@item)
-      @user.loot.should_not include(@item)
+    it "should respond to unbind!" do
+      @user.should respond_to(:unbind!)
+    end
+    
+    it "should unbind the item" do
+      @user.bind!(@item)
+      @user.unbind!(@item)
+      @user.items.should_not include(@item)
     end
   end
 end

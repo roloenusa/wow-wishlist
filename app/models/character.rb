@@ -5,7 +5,6 @@ class Character < ActiveRecord::Base
   has_many :owners,         :through => :relationships, :source => :user
   
   has_many :triptyches,     :dependent => :destroy
-  has_many :loot,           :through => :thriptyches, :source => :item
   
   validates :name,    :presence => true
   validates :realm_id,  :presence => true

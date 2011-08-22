@@ -22,3 +22,6 @@
 	<%= Battlenet::item_class[@item.itemclass] %><br />
 	<%= Battlenet::item_subclass[@item.itemclass][@item.itemsubclass][0]%><br />
 </div>
+<div class="round floatright">
+	<%= render 'shared/binding_form', :persona => current_user %>
+</div>

@@ -1,0 +1,9 @@
+<% if signed_in? %>
+  <div id="binding_form">
+    <% if persona.bound?(@item) %>
+      <%= render 'shared/unbind', :persona => persona %>
+    <% else %>
+      <%= render 'shared/bind', :persona => persona %>
+    <% end %>
+  </div>
+<% end %>
