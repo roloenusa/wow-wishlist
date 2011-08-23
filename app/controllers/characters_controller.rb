@@ -4,6 +4,7 @@ class CharactersController < ApplicationController
     if @character = Character.find_by_id(params[:id])
       @title = "#{@character.realm.name} | #{@character.name}"
       @character.items = eval(@character.items ||= "{}")
+      @relationship = current_user.claimed?(@character) if current_user
     else
       render 'search'
     end

@@ -28,10 +28,5 @@ describe ItemsController do
       get :show, :id => @item
       response.should have_selector("h2", :content => @item.name)
     end
-    
-    it "should have a item class mapped" do
-      get :show, :id => @item
-      response.should have_selector("div", :content => Battlenet::item_class[@item.itemclass])
-    end
   end
 end

@@ -7,6 +7,7 @@
 <div class="prepend-3">
   <% if @item.itemclass == 2 %>
     <%= Battlenet::inventory_type[@item.inventorytype] %> <br />
+    <%= Battlenet::item_class[@item.itemclass] %> <br />
     <%= Battlenet::item_subclass[@item.itemclass][@item.itemsubclass][1] %> <br />
     <%= "#{@item.weaponinfo[:damage][0][:mindamage]} - #{@item.weaponinfo[:damage][0][:maxdamage]} Damage" %> <br />
     <%= "Speed #{@item.weaponinfo[:weaponspeed]}" %> <br />

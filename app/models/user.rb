@@ -68,6 +68,10 @@ class User < ActiveRecord::Base
   def unbind!(item)
     self.bounds.find_by_item_id(item.id).destroy
   end
+  
+  def unique_items(relationship)
+    self.items - relationship.items
+  end
 
 private
   def encrypt_password

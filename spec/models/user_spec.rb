@@ -202,5 +202,34 @@ describe User do
       @user.unbind!(@item)
       @user.items.should_not include(@item)
     end
+    
+    describe "retrieve unique items" do
+    
+      before(:each) do
+        @character = Factory(:character)
+        @relationship  = @user.claim!(@character)
+      end
+      
+      it "should respond to unique_items" do
+        @user.should respond_to(:unique_items)
+      end
+      
+      it "should return the unique items favoring user" do
+        @user.bind!(@item)
+        @user.unique_items(@relationship).should include(@item)
+      end
+      
+      it "should not return items favoring the character" do
+        @relationship.bind!(@item)
+        @user.unique_items(@relationship).should_not include(@item)
+      end
+      
+      it "should not return characters that are common" do
+        @relationship.bind!(@item)
+        @user.bind!(@item)
+        @user.unique_items(@relationship).count.should == 0
+      end
+    end
   end
 end
+

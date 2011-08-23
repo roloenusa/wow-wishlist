@@ -32,13 +32,13 @@
 </div>
 
 <% if signed_in? %>
-<div class="span-12 colborder">
-	<h2>Account Items</h2>
-	<%= render current_user.items, :persona => current_user %>
-</div>
+  <div class="span-12 colborder">
+    <h2>Account Items</h2>
+    <%= render current_user.unique_items(@relationship), :persona => @relationship %>
+  </div>
 
-<div class="span-12 last">
-	<h2>Character Items</h2>
-	<%= render current_user.items, :persona => current_user.relationships.find_by_character_id(@character.id) %>
-</div>
+  <div class="span-12 last">
+    <h2>Character Items</h2>
+    <%= render @relationship.items, :persona => @relationship %>
+  </div>
 <% end %>  
