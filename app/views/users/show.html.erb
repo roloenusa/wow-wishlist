@@ -3,7 +3,7 @@
 	<h2><%= @user.email %> <%= link_to "edit", edit_user_path(current_user) %></h2>
   <hr />
     
-  <div class="span-11 colborder">
+  <div class="span-12 colborder">
   <h2>My Toons</h2>
 	<% if @characters.count > 0 %>
 		<%= render 'characters/characters_compact' %>
@@ -12,7 +12,8 @@
 		and claim your toon! 
 	<% end %>
   </div>
-	<div class="span-11 last">
+  
+	<div class="span-12 last">
   <h2>My Loot</h2>
 	<% if @items.count > 0 %>
 		<%= render 'items/item_compact' %>

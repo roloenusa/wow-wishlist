@@ -1,5 +1,9 @@
 
 body {
+  /* Gradient curtesy of 
+     http://www.colorzilla.com/gradient-editor/
+     Source: http://www.colorzilla.com/gradient-editor/#f2f6f8+0,d8e1e7+15,b5c6d0+71,e0eff9+100;Blue+Gloss+Default
+  */
   background: rgb(242,246,248); /* Old browsers */
   background: -moz-linear-gradient(top, rgba(242,246,248,1) 0%, rgba(216,225,231,1) 15%, rgba(181,198,208,1) 71%, rgba(224,239,249,1) 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,246,248,1)), color-stop(15%,rgba(216,225,231,1)), color-stop(71%,rgba(181,198,208,1)), color-stop(100%,rgba(224,239,249,1))); /* Chrome,Safari4+ */
@@ -11,19 +15,19 @@ body {
 }
 
 header {
-  padding: 20px;
+  
 }
 
 footer {
-  padding: 20px;
 }
 
 section {
-  padding: 20px;
   background: #fff;
 }
 
 .container {
+  width:990px;
+  padding:20px;
   background: #ffffff;
 }
 
@@ -32,14 +36,6 @@ section {
   -moz-border-radius:    10px;
   -webkit-border-radius: 10px;
   border-radius:         10px;
-}
-
-.floatright {
-	float:right;
-}
-
-.floatleft {
-	float:left;
 }
 
 .character-compact {
@@ -51,28 +47,13 @@ section {
 	padding: 10px;
 }
 
-.avatar {
-	float:left;
-}
+/* tbody tr:nth-child(even) td, tbody tr.even td {background:#e5ecf9;} */
 
 .info-compact {
 	padding: 10px;
 	margin-left: 40px;
 }
 
-/*
-"qualityid","qualityname","qualitycolor"
-"0","Poor","9D9D9D"
-"1","Common","FFFFFF"
-"2","Uncommon","1EFF00"
-"3","Rare","0070DD"
-"4","Epic","A335EE"
-"5","Legendary","FF8000"
-"6","Artifact","E5CC80"
-"7","Heirloom","E5CC80"
-"8","Quality 8","FFFF98"
-"9","Quality 9","71D5FF"
-*/
 .Poor {  color: #9D9D9D; }
 .Common { color: #FFFFFF; }
 .Uncommon { color: #1EFF00; }

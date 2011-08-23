@@ -2,13 +2,13 @@
   <div class="span-24 header">
     <h1>WoW Wishlist</h1>
     <h2 class="alt">The Subtitle</h2>
-    <p>
+    <hr />
       <% if signed_in? %>
         <%= link_to current_user.name, current_user %> | 
         <a href="<%= signout_path %>">Sign Out</a>
       <% else %>
         <a href="<%= signin_path %>">Sign In</a>
       <% end %>
-    </p>
+    <hr />
   </div>
 </header>

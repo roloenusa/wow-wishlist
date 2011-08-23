@@ -1,14 +1,17 @@
-<div class="avatar push-1"><%= character_image @character.thumbnail %></div>
-<div class="prepend-4">
-  <h1><%= @character.name %></h1>
-  <h2><%= @character.realm.name %></h2>
+<div class="span-12">
+  <div class="top left"><%= character_image @character.thumbnail %></div>
+  <div class="prepend-3">
+    <h1><%= @character.name %></h1>
+    <h2><%= "#{@character.realm.region.upcase} / #{@character.realm.name}" %></h2>
+  </div>
 </div>
-<hr />
-<div class ="floatright">
-  <%= button_to "Update", character_path(@character), :method => :put %>
-  <%= render 'users/claim_form' %>
-</div>
-<div class="round details">
+
+<div class="span-12 last">
+  <div class ="right">
+    <%= button_to "Update", character_path(@character), :method => :put %>
+    <%= render 'users/claim_form' %>
+  </div>
+  
   <strong>Last Modified:</strong> <%= Time.at(@character.lastmodified / 1000).strftime("%m/%d/%y %I:%M%p") %><br />             
   <strong>Realm:</strong> <%= @character.realm.name %><br />
   <strong>Class:</strong> <%= @character.klass %><br />             
@@ -16,7 +19,7 @@
   <strong>Achievement Points:</strong> <%= @character.achievementpoints %>
 </div>
 
-<div class="outfittable">
+<div class="span-24">
   <table>
     <% Battlenet::outfit.each do |piece| %>
       <% unless @character.items[piece].nil? %>
