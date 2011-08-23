@@ -6,7 +6,7 @@
   <div class="span-12 colborder">
   <h2>My Toons</h2>
 	<% if @characters.count > 0 %>
-		<%= render 'characters/characters_compact' %>
+		<%= render @characters %>
 	<% else %>
 		You don't have any users yet! Head to the <%= link_to "search", characters_path %> 
 		and claim your toon! 
@@ -16,10 +16,9 @@
 	<div class="span-12 last">
   <h2>My Loot</h2>
 	<% if @items.count > 0 %>
-		<%= render 'items/item_compact' %>
+		<%= render @items %>
 	<% else %>
-		You don't have any items yet! Head to the
-		and claim your toon! 
+		You don't have any items yet!
 	<% end %>
   </div>
 <% end %>

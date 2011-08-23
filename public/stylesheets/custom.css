@@ -19,6 +19,7 @@ header {
 }
 
 footer {
+  padding-top: 20px;
 }
 
 section {
@@ -42,7 +43,16 @@ section {
 	clear:both;
 	background-color:#FFF2E1;
 	border-style: solid;
-	border-width: 2px;
+	border-width: 1px;
+	border-color: #866B26;
+	padding: 10px;
+}
+
+.item-compact {
+	clear:both;
+	background-color:#FFF2E1;
+	border-style: solid;
+	border-width: 1px;
 	border-color: #866B26;
 	padding: 10px;
 }

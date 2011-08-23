@@ -1,0 +1,9 @@
+<div class = "round character-compact">
+	<div class="left">
+		<%= character_image character.thumbnail, :size => "40x40" %>
+	</div>
+	<div class="info-compact"> 
+		<strong><%= link_to character.name, character %> - <%= character.level %></strong><br />
+		<strong>Achievement Points:</strong> <%=character.achievementpoints%>
+	</div>
+</div>
