@@ -1,6 +1,10 @@
 <h2 class="<%= Battlenet::quality[@item.quality] %>"><%= @item.name %></h2>
-<div class="avatar push-1"><%= icon_image @item.icon %></div>
-<div class="prepend-4">
+<div class="left">
+  <%= icon_image @item.icon %>
+  <hr />
+  <%= render 'shared/binding_form', :persona => current_user, :item => @item if signed_in? %>
+</div>
+<div class="prepend-3">
   <% if @item.itemclass == 2 %>
     <%= Battlenet::inventory_type[@item.inventorytype] %> <br />
     <%= Battlenet::item_subclass[@item.itemclass][@item.itemsubclass][1] %> <br />
@@ -16,12 +20,4 @@
   <%= "Item Level #{@item.itemlevel}" unless @item.itemlevel.nil? %><br />  
   <%= @item.description unless @item.description.nil? %><br />
   <%= "Durability #{@item.maxdurability}" unless @item.maxdurability <= 0 %>
-</div>
-<hr />
-<div class="round details">
-	<%= Battlenet::item_class[@item.itemclass] %><br />
-	<%= Battlenet::item_subclass[@item.itemclass][@item.itemsubclass][0]%><br />
-</div>
-<div class="round floatright">
-	<%= render 'shared/binding_form', :persona => current_user %>
 </div>

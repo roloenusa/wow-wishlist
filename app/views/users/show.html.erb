@@ -16,7 +16,7 @@
 	<div class="span-12 last">
   <h2>My Loot</h2>
 	<% if @items.count > 0 %>
-		<%= render @items %>
+		<%= render @items, :persona => @user %>
 	<% else %>
 		You don't have any items yet!
 	<% end %>
