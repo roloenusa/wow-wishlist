@@ -21,13 +21,14 @@
 
 <div class="span-24">
   <table>
-    <% Battlenet::outfit.each do |piece| %>
-      <% unless @character.items[piece].nil? %>
-    <tr>
-      <td class="<%= Battlenet::quality[@character.items[piece][:quality]]%>"><%= piece %></td><td><%= link_to @character.items[piece][:name], item_path(@character.items[piece][:id]) %></td>
-    </tr>
-      <% end %>
+  <% @character.items.each do |k, v| %>
+    <% if v.is_a?(Hash) %>
+      <tr>
+        <td><strong><%= k.to_s.capitalize %></strong></td>
+        <td class="<%= Battlenet::quality[v[:quality]]%>"><%= link_to v[:name], item_path(v[:id]), :rel => "item=#{v[:id]}" %></td>
+      </tr>
     <% end %>
+  <% end %>
   </table>
 </div>
 

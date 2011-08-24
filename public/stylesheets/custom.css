@@ -64,11 +64,14 @@ section {
 	margin-left: 40px;
 }
 
-.Poor {  color: #9D9D9D; }
-.Common { color: #FFFFFF; }
-.Uncommon { color: #1EFF00; }
-.Rare { color: #0070DD; }
-.Epic { color: #A335EE; }
-.Legendary { color: #FF8000; }
-.Artifact { color: #E5CC80; }
-.Heirloom { color: #E5CC80; }
+.item a {text-decoration:none;}
+.item a:hover {text-decoration:underline;}
+
+.Poor, .Poor a, .Poor a:hover, .Poor a:visited, .Poor a:focus {  color: #9D9D9D; }
+.Common, .Common a, .Common a:hover, .Common a:visited, .Common a:focus { color: #FFFFFF; }
+.Uncommon, .Uncommon a, .Uncommon a:hover, .Uncommon a:visited, .Uncommon a:focus { color: #1EFF00; }
+.Rare, .Rare a, .Rare a:hover, .Rare a:visited, .Rare a:focus{ color: #0070DD; }
+.Epic, .Epic a, .Epic a:hover, .Epic a:visited, .Epic a:focus { color: #A335EE; }
+.Legendary, .Legendary a, .Legendary a:hover, .Legendary a:visited, .Legendary a:focus{ color: #FF8000; }
+.Artifact, .Artifact a, .Artifact a:hover, .Artifact a:visited, .Artifact a:focus { color: #E5CC80; }
+.Heirloom , .Heirloom a, .Heirloom a:hover, .Heirloom a:visited, .Heirloom a:focus{ color: #E5CC80; }

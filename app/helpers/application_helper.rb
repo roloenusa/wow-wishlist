@@ -16,4 +16,10 @@ module ApplicationHelper
   def icon_image(img, options = {})      
     image_tag("#{Battlenet::icon_url}#{img}.png", options)
   end
+  
+  def link_to_item(item)
+    link_to item.name, item_path(item), :rel => "item=#{item.id}"
+  end
 end
+
+
