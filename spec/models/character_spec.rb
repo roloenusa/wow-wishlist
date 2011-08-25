@@ -150,7 +150,7 @@ describe Character do
   describe "item functionality" do
     
     before(:each) do
-      @character = Factory(:character)
+      @character = @realm.characters.create(@attr)
       @character.items = "{:items => {:averageItemLevel => 360,:averageItemLevelEquipped => 358, 
                            :head => {:id => 63485, :name => \"Cowl of Rebellion\",:icon =>\"inv_helmet_104\", :quality => 3,
                            :tooltipParams => { :gem0=>52296,:gem1 => 52207, :enchant=>4207, :reforge=>167}}}}"
