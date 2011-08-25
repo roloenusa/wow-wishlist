@@ -2,7 +2,8 @@
   <div class="top left"><%= character_image @character.thumbnail %></div>
   <div class="prepend-3">
     <h1><%= @character.name %></h1>
-    <h2><%= "#{@character.realm.region.upcase} / #{@character.realm.name}" %></h2>
+    <h2><%= "#{@character.level}  #{Battlenet::races[@character.race][:name]} #{Battlenet::klass[@character.klass][:name]}" %><br />
+        <%= "#{@character.realm.region.upcase} / #{@character.realm.name}" %></h2>
   </div>
 </div>
 
@@ -13,13 +14,12 @@
   </div>
   
   <strong>Last Modified:</strong> <%= Time.at(@character.lastmodified / 1000).strftime("%m/%d/%y %I:%M%p") %><br />             
-  <strong>Realm:</strong> <%= @character.realm.name %><br />
-  <strong>Class:</strong> <%= @character.klass %><br />             
+  <strong>Realm:</strong> <%= @character.realm.name %><br />             
   <strong>Level:</strong> <%= @character.level %><br />            
   <strong>Achievement Points:</strong> <%= @character.achievementpoints %>
 </div>
 
-<div class="span-24">
+<div class="span-24 outfit round">
   <table>
   <% @character.items.each do |k, v| %>
     <% if v.is_a?(Hash) %>
@@ -32,7 +32,7 @@
   </table>
 </div>
 
-<% if signed_in? %>
+<% if @relationship %>
   <div class="span-12 colborder">
     <h2>Account Items</h2>
     <%= render current_user.unique_items(@relationship), :persona => @relationship %>

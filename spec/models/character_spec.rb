@@ -146,4 +146,24 @@ describe Character do
       end.should_not change(Character, :count)
     end
   end
+  
+  describe "item functionality" do
+    
+    before(:each) do
+      @character = Factory(:character)
+      @character.items = "{:items => {:averageItemLevel => 360,:averageItemLevelEquipped => 358, 
+                           :head => {:id => 63485, :name => \"Cowl of Rebellion\",:icon =>\"inv_helmet_104\", :quality => 3,
+                           :tooltipParams => { :gem0=>52296,:gem1 => 52207, :enchant=>4207, :reforge=>167}}}}"
+      @item = Item.find_or_create(63485)
+    end
+    
+    it "should respond to :full_items" do
+      @character.should respond_to(:full_items)
+    end
+    
+    it "should return all the full items" do
+      items  = @character.full_items
+      items.should == @item
+    end
+  end
 end

@@ -52,4 +52,8 @@ class Character < ActiveRecord::Base
     
     (@character.nil? || @character.id.nil?) ? nil : @character
   end
+  
+  def full_items
+    
+  end
 end
