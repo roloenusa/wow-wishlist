@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110820063103) do
+ActiveRecord::Schema.define(:version => 20110826045724) do
 
   create_table "bounds", :force => true do |t|
     t.integer  "item_id"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20110820063103) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "battlegroup"
   end
 
   add_index "realms", ["region", "name"], :name => "index_realms_on_region_and_name", :unique => true
@@ -103,19 +104,6 @@ ActiveRecord::Schema.define(:version => 20110820063103) do
   add_index "relationships", ["character_id"], :name => "index_relationships_on_character_id"
   add_index "relationships", ["user_id", "character_id"], :name => "index_relationships_on_user_id_and_character_id", :unique => true
   add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"
-
-  create_table "triptyches", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "character_id"
-    t.integer  "item_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "triptyches", ["character_id"], :name => "index_triptyches_on_character_id"
-  add_index "triptyches", ["user_id", "character_id", "item_id"], :name => "index_triptyches_on_user_id_and_character_id_and_item_id", :unique => true
-  add_index "triptyches", ["user_id", "character_id"], :name => "index_triptyches_on_user_id_and_character_id"
-  add_index "triptyches", ["user_id"], :name => "index_triptyches_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
