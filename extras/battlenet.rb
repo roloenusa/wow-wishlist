@@ -1,6 +1,7 @@
 require 'net/http'
 require 'rexml/document'
 require 'json'
+require 'battlenet'
 
 module Battlenet
 
@@ -24,7 +25,9 @@ module Battlenet
   
   
   def self.inventory_type
-    ["None", "Head", "Neck", "Shoulder", "Shirt", "Chest", "Waist", "Legs", "Feet", "Wrist", "Relic"]
+    ["None", "Head", "Neck", "Shoulder", "Shirt", "Chest", "Waist", "Legs", "Feet", "Wrist", "Hands", "Finger", 
+     "Trinket", "One-Hand", "Shield", "Ranged", "Cloak", "Two-Hand", "Bag", "Tabard", "Robe", "Main Hand", 
+     "Off Hand", "Held In Off-hand", "Ammo", "Thrown", "Ranged Right", "Relic"]
   end
   
   def self.outfit
@@ -292,7 +295,6 @@ private
   end
   
   def self.clean_hash(test)
-  
     result = {}
     test.each do |k, v|
       if v.is_a?(Array)
