@@ -10,224 +10,48 @@ module Battlenet
   end
   
   def self.icon_url
-    # For now the best alternative is to use wowroster to hotlink
-    "http://wowroster.net/Interface/Icons/"
+    Battlenet::Item::Icon_url
   end
   
   def self.character_url
-    # With the ban-hammer hanging, it's best to not use the Battlenet link
-    "http://us.battle.net/static-render/us/"
+    Battlenet::Character::Avatar_url
   end
   
   def self.quality
-    ["Poor", "Common", "Uncommon", "Rare", "Epic", "Legendary", "Artifact", "Heirloom", "Quality 8", "Quality 9"]
+    Battlenet::Item::Quality
   end
   
   
   def self.inventory_type
-    ["None", "Head", "Neck", "Shoulder", "Shirt", "Chest", "Waist", "Legs", "Feet", "Wrist", "Hands", "Finger", 
-     "Trinket", "One-Hand", "Shield", "Ranged", "Cloak", "Two-Hand", "Bag", "Tabard", "Robe", "Main Hand", 
-     "Off Hand", "Held In Off-hand", "Ammo", "Thrown", "Ranged Right", "Relic"]
+    Battlenet::Item::InventoryType
   end
   
   def self.outfit
-    [:head, :neck, :shoulder, :back, :chest, :shirt, :tabard, :wrist, :hands, :waist, :legs, :feet, :finger1, :finger2, :trinket1, :trinket2, :mainhand, :offhand, :ranged]
+    
   end
   
   def self.klass  
-    {1 => { :id => 1, :mask => 1, :powerType => "rage", :name => "Warrior" },
-    2 => { :id => 2, :mask => 2,  :powerType => "mana", :name => "Paladin" },
-    3 => { :id => 3, :mask => 4, :powerType => "focus", :name => "Hunter" },
-    4 => { :id => 4, :mask => 8, :powerType => "energy", :name => "Rogue" },
-    5 => { :id => 5, :mask => 16, :powerType => "mana", :name => "Priest" },
-    6 => { :id => 6, :mask => 32, :powerType => "runic-power", :name => "Death Knight" },
-    7 => { :id => 7, :mask => 64, :powerType => "mana", :name => "Shaman" },
-    8 => { :id => 8, :mask => 128, :powerType => "mana", :name => "Mage" },
-    9 => { :id => 9, :mask => 256, :powerType => "mana", :name => "Warlock" },
-    11 => { :id => 11, :mask => 1024, :powerType => "mana", :name => "Druid" }} 
+    Battlenet::Character::Classes 
   end
   
   def self.races
-    {1 => { :id => 1, :mask => 1, :side => "alliance", :name => "Human" },
-    2 => { :id => 2, :mask => 2, :side => "horde", :name => "Orc" },
-    3 => { :id => 3, :mask => 4, :side => "alliance", :name => "Dwarf" },
-    4 => { :id => 4, :mask => 8, :side => "alliance", :name => "Night Elf" },
-    5 => { :id => 5, :mask => 16, :side => "horde", :name => "Undead" },
-    6 => { :id => 6, :mask => 32, :side => "horde", :name => "Tauren" },
-    7 => { :id => 7, :mask => 64, :side => "alliance", :name => "Gnome" },
-    8 => { :id => 8, :mask => 128, :side => "horde", :name => "Troll" },
-    9 => { :id => 9, :mask => 256, :side => "horde", :name => "Goblin" },
-    10 => { :id => 10, :mask => 512, :side => "horde", :name => "Blood Elf" },
-    11 => { :id => 11, :mask => 1024, :side => "alliance", :name => "Draenei" },
-    22 => { :id => 22, :mask => 2097152, :side => "alliance", :name => "Worgen" }}
+    Battlenet::Character::Races
   end
   
   def self.skill_line
-    { 185 => "Cooking",
-      773 => "Inscription",
-      755 => "Jewelcrafting",
-      393 => "Skinning",
-      333 => "Enchanting",
-      202 => "Engineering",
-      197 => "Tailoring",
-      186 => "Mining",
-      182 => "Herbalism",
-      171 => "Alchemy",
-      165 => "Leatherworking",
-      164 => "Blacksmithing" }
+    Battlenet::Character::Skills
   end
   
   def self.item_bind
-    [nil, "Binds when picked up", "Binds when equipped"]
+    Battlenet::Character::Bind
   end
   
   def self.item_class
-    ["Consumable", "Container", "Weapon", "Gem", "Armor", "Reagent", "Projectile", 
-     "Trade Goods", "Generic", "Book", "Money", "Quiver", "Quest", "Key", "Permanent", "Junk", "Glyph"]
+    Battlenet::Item::Class
   end
   
   def self.item_subclass
-    { # "classid","subclassid","subclassname","subclassfullname"
-    0 => { 0 => [ "Consumable",nil  ],  
-           1 => [ "Potion",nil  ],
-           2 => [ "Elixir",nil  ], 
-           3 => [ "Flask",nil  ],  
-           4 => [ "Scroll",nil  ], 
-           5 => [ "Food & Drink",nil  ],
-           7 => [ "Bandage",nil  ],
-           6 => [ "Item Enhancement",nil  ],
-           8 => [ "Other",nil ]},
-           
-    1 => { 0 => [ "Bag",nil ],
-           1 => [ "Soul Bag",nil ],
-           2 => [ "Herb Bag",nil ],
-           3 => [ "Enchanting Bag",nil ],
-           4 => [ "Engineering Bag",nil ],
-           5 => [ "Gem Bag",nil ],
-           6 => [ "Mining Bag",nil ],
-           7 => [ "Leatherworking Bag",nil ],
-           8 => [ "Inscription Bag",nil ],
-           9 => [ "Tackle Box",nil ]},
-             
-    2 => { 0 => [ "Axe","One-Handed Axes" ],
-           1 => [ "Axe","Two-Handed Axes" ],
-           2 => [ "Bow","Bows" ],
-           3 => [ "Gun","Guns" ],
-           4 => [ "Mace","One-Handed Maces" ],
-           5 => [ "Mace","Two-Handed Maces" ],
-           6 => [ "Polearm","Polearms" ],
-           7 => [ "Sword","One-Handed Swords" ],
-           8 => [ "Sword","Two-Handed Swords" ],
-           9 => [ "Obsolete",nil ],
-           10 => [ "Staff","Staves" ],
-           11 => [ "Exotic","One-Handed Exotics" ],
-           12 => [ "Exotic","Two-Handed Exotics" ],
-           13 => [ "Fist Weapon","Fist Weapons" ],
-           14 => [ "Miscellaneous",nil ],
-           15 => [ "Dagger","Daggers" ],
-           16 => [ "Thrown","Thrown" ],
-           17 => [ "Spear","Spears" ],
-           18 => [ "Crossbow","Crossbows" ],
-           19 => [ "Wand","Wands" ],
-           20 => [ "Fishing Pole","Fishing Poles" ]},
-    
-    3 => { 0 => [ "Red",nil ],
-           1 => [ "Blue",nil ],
-           2 => [ "Yellow",nil ],
-           3 => [ "Purple",nil ],
-           4 => [ "Green",nil ],
-           5 => [ "Orange",nil ],
-           6 => [ "Meta",nil ],
-           7 => [ "Simple",nil ],
-           8 => [ "Prismatic",nil ],
-           9 => [ "Hydraulic",nil ],
-           10 => [ "Cogwheel",nil ]},
-    
-    4 => { 0 => [ "Miscellaneous",nil ],
-           1 => [ "Cloth","Cloth" ],
-           2 => [ "Leather","Leather" ],
-           3 => [ "Mail","Mail" ],
-           4 => [ "Plate","Plate" ],
-           5 => [ "Buckler(OBSOLETE)","Bucklers" ],
-           6 => [ "Shield","Shields" ],
-           7 => [ "Libram","Librams" ],
-           8 => [ "Idol","Idols" ],
-           9 => [ "Totem","Totems" ],
-           10 => [ "Sigil","Sigils" ],
-           11 => [ "Relic",nil ]},
-           
-    5 => { 0 => [ "Reagent",nil ]},
-    
-    6 => { 0 => [ "Wand(OBSOLETE)",nil ],
-           1 => [ "Bolt(OBSOLETE)",nil ],
-           2 => [ "Arrow",nil ],
-           3 => [ "Bullet",nil ],
-           4 => [ "Thrown(OBSOLETE)",nil ]},
-    
-    7 => { 0 => [ "Trade Goods",nil ],
-           10 => [ "Elemental",nil ],
-           15 => [ "Weapon Enchantment - Obsolete","Weapon Enchantment - Obsolete" ],
-           5 => [ "Cloth",nil ],
-           6 => [ "Leather",nil ],
-           7 => [ "Metal & Stone",nil ],
-           8 => [ "Meat",nil ],
-           9 => [ "Herb",nil ],
-           12 => [ "Enchanting",nil ],
-           4 => [ "Jewelcrafting",nil ],
-           1 => [ "Parts",nil ],
-           3 => [ "Devices",nil ],
-           2 => [ "Explosives",nil ],
-           13 => [ "Materials",nil ],
-           11 => [ "Other",nil ],
-           14 => [ "Item Enchantment","Item Enchantment" ]},
-    
-    8 => { 0 => [ "Generic(OBSOLETE)",nil ]},
-    
-    9 => { 0 => [ "Book",nil  ],
-           1 => [ "Leatherworking",nil ],
-           2 => [ "Tailoring",nil ],
-           3 => [ "Engineering",nil ],
-           4 => [ "Blacksmithing",nil ],
-           5 => [ "Cooking",nil ],
-           6 => [ "Alchemy",nil ],
-           7 => [ "First Aid",nil ],
-           8 => [ "Enchanting",nil ],
-           9 => [ "Fishing",nil ],
-           10 => [ "Jewelcrafting",nil ],
-           11 => [ "Inscription","Inscription" ]},
-    
-    10 => { 0 => [ "Money(OBSOLETE)",nil ]},
-    
-    11 => { 0 => [ "Quiver(OBSOLETE)",nil ],
-            1 => [ "Quiver(OBSOLETE)",nil ],
-            2 => [ "Quiver",nil ],
-            3 => [ "Ammo Pouch",nil ]},
-    
-    12 => { 0 => [ "Quest",nil ]},
-    
-    13 => { 0 => [ "Key",nil ],
-            1 => [ "Lockpick",nil ]},
-    
-    14 => { 0 => [ "Permanent",nil ]},
-    
-    15 => { 0 => [ "Junk",nil ],
-            1 => [ "Reagent",nil ],
-            2 => [ "Pet",nil ],
-            3 => [ "Holiday",nil ],
-            4 => [ "Other",nil ],
-            5 => [ "Mount","Mount" ]},
-    
-    16 => { 1 => [ "Warrior","Warrior" ],
-            2 => [ "Paladin","Paladin" ],
-            3 => [ "Hunter","Hunter" ],
-            4 => [ "Rogue","Rogue" ],
-            5 => [ "Priest","Priest" ],
-            6 => [ "Death Knight","Death Knight" ],
-            7 => [ "Shaman","Shaman" ],
-            8 => [ "Mage","Mage" ],
-            9 => [ "Warlock","Warlock" ],
-            11 => [ "Druid","Druid" ]}
-      }
+    Battlenet::Item::Subclass
   end
   
   def self.get_item(id)

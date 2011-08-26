@@ -71,7 +71,8 @@ section {
   border-radius: 5px;
   -moz-border-radius: 5px;
   color: #ffffff;
-  font: 15px verdana, arial, helvetica, sans-serif;
+  font: verdana, arial, helvetica, sans-serif;
+  padding: 10px;
 }
 
 .item a {text-decoration:none;}

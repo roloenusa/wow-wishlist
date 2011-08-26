@@ -1,7 +1,9 @@
 <div class = "round item-compact">
+  <% unless local_assigns[:persona].nil? %>	
 	<div class="top right">
 		<%= render 'shared/binding_form', :persona => persona,  :item => item %>
 	</div>
+  <% end %>
 	<div class="left">
 		<%= icon_image item.icon, :size => "40x40" %>
 	</div>

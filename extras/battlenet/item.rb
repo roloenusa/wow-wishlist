@@ -12,6 +12,10 @@ module Battlenet
     Class = ["Consumable", "Container", "Weapon", "Gem", "Armor", "Reagent", "Projectile", "Trade Goods", "Generic", "Book", 
              "Money", "Quiver", "Quest", "Key", "Permanent", "Junk", "Glyph"]
     
+    InventoryType = ["None", "Head", "Neck", "Shoulder", "Shirt", "Chest", "Waist", "Legs", "Feet", "Wrist", "Hands", "Finger", 
+      "Trinket", "One-Hand", "Shield", "Ranged", "Cloak", "Two-Hand", "Bag", "Tabard", "Robe", "Main Hand", 
+      "Off Hand", "Held In Off-hand", "Ammo", "Thrown", "Ranged Right", "Relic"]
+    
     Subclass = { # "classid","subclassid","subclassname","subclassfullname"
       0 => { 0 => [ "Consumable",nil  ],  
              1 => [ "Potion",nil  ],

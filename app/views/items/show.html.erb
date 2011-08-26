@@ -1,24 +1,12 @@
-<h2 class="<%= Battlenet::quality[@item.quality] %>"><%= @item.name %></h2>
 <div class="left">
   <%= icon_image @item.icon %>
   <hr />
   <%= render 'shared/binding_form', :persona => current_user, :item => @item if signed_in? %>
 </div>
-<div class="prepend-3">
-  <% if @item.itemclass == 2 %>
-    <%= Battlenet::inventory_type[@item.inventorytype] %> <br />
-    <%= Battlenet::item_class[@item.itemclass] %> <br />
-    <%= Battlenet::item_subclass[@item.itemclass][@item.itemsubclass][1] %> <br />
-    <%= "#{@item.weaponinfo[:damage][0][:mindamage]} - #{@item.weaponinfo[:damage][0][:maxdamage]} Damage" %> <br />
-    <%= "Speed #{@item.weaponinfo[:weaponspeed]}" %> <br />
-    <%= "(#{@item.weaponinfo[:dps].round(1)} damage per second)" %> <br /> 
-  <% end %>
-  
-  <% @item.bonusstats.each do |stat| %>
-    <%= "+#{stat[:amount]} --stat mapping pending" %><br />
-  <% end %>
-  
-  <%= "Item Level #{@item.itemlevel}" unless @item.itemlevel.nil? %><br />  
-  <%= @item.description unless @item.description.nil? %><br />
-  <%= "Durability #{@item.maxdurability}" unless @item.maxdurability <= 0 %>
+<div class="span-10 tooltip_border">
+  <h2 class="<%= Battlenet::quality[@item.quality] %>"><%= @item.name %></h2>
+  <div>
+    <%= render 'stats', :bonusstats => @item.bonusstats %>
+
+  </div>
 </div>

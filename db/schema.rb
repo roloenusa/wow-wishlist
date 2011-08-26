@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110826045724) do
+ActiveRecord::Schema.define(:version => 20110826063010) do
 
   create_table "bounds", :force => true do |t|
     t.integer  "item_id"
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(:version => 20110826045724) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "weaponinfo"
+    t.string   "allowableclasses"
+    t.string   "itemset"
   end
 
   add_index "items", ["id"], :name => "index_items_on_id"

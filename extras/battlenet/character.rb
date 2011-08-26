@@ -1,5 +1,8 @@
 module Battlenet
   module Character
+    
+    # With the ban-hammer hanging, it's best to not use the Battlenet link
+    Avatar_url = "http://us.battle.net/static-render/us/"
   
     Skills = { 
       185 => "Cooking",
@@ -39,6 +42,10 @@ module Battlenet
       7 => { :id => 7, :mask => 64, :powerType => "mana", :name => "Shaman" },
       8 => { :id => 8, :mask => 128, :powerType => "mana", :name => "Mage" },
       9 => { :id => 9, :mask => 256, :powerType => "mana", :name => "Warlock" },
-      11 => { :id => 11, :mask => 1024, :powerType => "mana", :name => "Druid" }}   
+      11 => { :id => 11, :mask => 1024, :powerType => "mana", :name => "Druid" }}
+      
+    InventoryType = [:head, :neck, :shoulder, :back, :chest, :shirt, :tabard, 
+      :wrist, :hands, :waist, :legs, :feet, :finger1, :finger2, :trinket1, 
+      :trinket2, :mainhand, :offhand, :ranged] 
   end
 end
