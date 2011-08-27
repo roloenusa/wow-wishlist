@@ -1,18 +1,18 @@
 <div>
-  <%= Battlenet::Item::Bind[@item.itembind] %> <br />
-  <%= Battlenet::Item::InventoryType[@item.inventorytype] %>
+  <%= Battlenet::Item::Bind[item.itemBind] %> <br />
+  <%= Battlenet::Item::InventoryType[item.inventoryType] %>
 </div>
 
-<% if @item.itemclass == 2 %>
+<% if item.itemClass == 2 %>
   <div>
-    <%= "#{@item.weaponinfo[:damage][0][:mindamage]} - #{@item.weaponinfo[:damage][0][:maxdamage]} Damage" %> <br />
-    <%= "Speed #{@item.weaponinfo[:weaponspeed]}" %> <br />
-    <%= "(#{@item.weaponinfo[:dps].round(1)} damage per second)" %>
+    <%= "#{item.weaponInfo[:damage][0][:minDamage]} - #{item.weaponInfo[:damage][0][:maxDamage]} Damage" %> <br />
+    <%= "Speed #{item.weaponInfo[:weaponSpeed]}" %> <br />
+    <%= "(#{item.weaponInfo[:dps].round(1)} damage per second)" %>
   </div>
 <% end %>
 
 <div class="simpleStats">
-  <% bonusstats.each do |stat| %>
+  <% item.bonusStats.each do |stat| %>
     <% if [1,2,3,4,5,6,7].include?(stat[:stat]) %>
       <%= "#{Battlenet::Item::Stat_print[stat[:stat]] % stat[:amount]}" %><br />
     <% end%>
@@ -20,13 +20,13 @@
 </div>
 
 <div>
-  <%= "Durability #{@item.maxdurability}/#{@item.maxdurability}" unless @item.maxdurability <= 0 %><br />
-  <%= "Item Level #{@item.itemlevel}" unless @item.itemlevel.nil? %><br />  
-  <%= @item.description unless @item.description.nil? %>
+  <%= "Durability #{item.maxDurability}/#{item.maxDurability}" unless item.maxDurability <= 0 %><br />
+  <%= "Item Level #{item.itemLevel}" unless item.itemLevel.nil? %><br />  
+  <%= item.description unless item.description.nil? %>
 </div>
 
 <div class="simpleStats Uncommon">
-  <% bonusstats.each do |stat| %>
+  <% item.bonusStats.each do |stat| %>
     <% unless [1,2,3,4,5,6,7].include?(stat[:stat]) %>
       <%= "#{Battlenet::Item::Stat_print[stat[:stat]] % stat[:amount]}" %><br />
     <% end%>

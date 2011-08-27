@@ -6,6 +6,8 @@ class Item < ActiveRecord::Base
   
   has_many :bounds,     :dependent => :destroy
   
+  attr_accessor :tooltipParams
+  
   def self.find_or_create(item_id) 
     
     unless item = Item.find_by_id(item_id)
@@ -22,20 +24,20 @@ class Item < ActiveRecord::Base
     bn = Battlenet::get_item(item_id)
     
     if bn[:status].nil?
-      bn[:bonusstats] = bn[:bonusstats].to_s unless bn[:bonusstats].nil?
-      bn[:itemspells] = bn[:itemspells].to_s unless bn[:itemspells].nil?
-      bn[:itemsource] = bn[:itemsource].to_s unless bn[:itemsource].nil?
-      bn[:weaponinfo] = bn[:weaponinfo].to_s unless bn[:weaponinfo].nil?
+      bn[:bonusStats] = bn[:bonusStats].to_s unless bn[:bonusStats].nil?
+      bn[:itemSpells] = bn[:itemSpells].to_s unless bn[:itemSpells].nil?
+      bn[:itemSource] = bn[:itemSource].to_s unless bn[:itemSource].nil?
+      bn[:weaponInfo] = bn[:weaponInfo].to_s unless bn[:weaponInfo].nil?
       return bn
     end
     return nil
   end
   
   def prepare!
-    self.bonusstats = eval(self.bonusstats) unless self.bonusstats.nil?
-    self.itemspells = eval(self.itemspells) unless self.itemspells.nil?
-    self.itemsource = eval(self.itemsource) unless self.itemsource.nil?
-    self.weaponinfo = eval(self.weaponinfo) unless self.weaponinfo.nil?
+    self.bonusStats = eval(self.bonusStats) unless self.bonusStats.nil?
+    self.itemSpells = eval(self.itemSpells) unless self.itemSpells.nil?
+    self.itemSource = eval(self.itemSource) unless self.itemSource.nil?
+    self.weaponInfo = eval(self.weaponInfo) unless self.weaponInfo.nil?
     return self
   end
 end  

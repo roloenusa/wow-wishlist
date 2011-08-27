@@ -8,29 +8,29 @@ describe Item do
                 :name=>"Formula: Enchant Weapon - Minor Beastslayer", 
                 :icon=>"inv_misc_note_01", 
                 :stackable=>1, 
-                :itembind=>0, 
-                :bonusstats=> "[]", 
-                :itemspells=> '[{:spellid=>483, :spell=>{:id=>483, :name=>"Learning", :icon=>"spell_arcane_mindmastery", :description=>"", :casttime=>"3 sec cast"}, :ncharges=>1, :consumable=>true, :categoryid=>0}, {:spellid=>7786, :spell=>{:id=>7786, :name=>"Enchant Weapon - Minor Beastslayer", :icon=>"spell_holy_greaterheal", :description=>"Permanently enchant a Melee Weapon to do 2 additional points of damage to beasts.", :casttime=>"5 sec cast"}, :ncharges=>0, :consumable=>false, :categoryid=>0}]', 
-                :buyprice=>500, 
-                :itemclass=>9, 
-                :itemsubclass=>8, 
-                :containerslots=>0, 
-                :inventorytype=>0, 
+                :itemBind=>0, 
+                :bonusStats=> "[]", 
+                :itemSpells=> '[{:spellId=>483, :spell=>{:id=>483, :name=>"Learning", :icon=>"spell_arcane_mindmastery", :description=>"", :castTime=>"3 sec cast"}, :nCharges=>1, :consumable=>true, :categoryId=>0}, {:spellId=>7786, :spell=>{:id=>7786, :name=>"Enchant Weapon - Minor Beastslayer", :icon=>"spell_holy_greaterheal", :description=>"Permanently enchant a Melee Weapon to do 2 additional points of damage to beasts.", :castTime=>"5 sec cast"}, :nCharges=>0, :consumable=>false, :categoryId=>0}]', 
+                :buyPrice=>500, 
+                :itemClass=>9, 
+                :itemSubClass=>8, 
+                :containerSlots=>0, 
+                :inventoryType=>0, 
                 :equippable=>false, 
-                :itemlevel=>20, 
-                :maxcount=>0, 
-                :maxdurability=>0, 
-                :minfactionid=>0, 
-                :minreputation=>0, 
+                :itemLevel=>20, 
+                :maxCount=>0, 
+                :maxDurability=>0, 
+                :minFactionId=>0, 
+                :minReputation=>0, 
                 :quality=>2, 
-                :sellprice=>125, 
-                :requiredskill=>333, 
-                :requiredlevel=>0, 
-                :requiredskillrank=>90, 
-                :itemsource=> '{:sourceid=>2849, :sourcetype=>"GAME_OBJECT_DROP"}', 
-                :basearmor=>0, 
-                :hassockets=>false, 
-                :isauctionable=>true}
+                :sellPrice=>125, 
+                :requiredSkill=>333, 
+                :requiredLevel=>0, 
+                :requiredSkillRank=>90, 
+                :itemSource=> '{:sourceId=>2849, :sourceType=>"GAME_OBJECT_DROP"}', 
+                :baseArmor=>0, 
+                :hasSockets=>false, 
+                :isAuctionable=>true}
   end
   
   it "should create a new item" do
@@ -73,9 +73,9 @@ describe Item do
     it "should turn a string into a hash" do
       item = Item.new(@attr)
       item.prepare!
-      item.bonusstats.is_a?(Array).should == true
-      item.itemspells.is_a?(Array).should == true
-      item.itemsource.is_a?(Hash).should == true
+      item.bonusStats.is_a?(Array).should == true
+      item.itemSpells.is_a?(Array).should == true
+      item.itemSource.is_a?(Hash).should == true
     end
   end
   

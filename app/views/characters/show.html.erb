@@ -13,10 +13,10 @@
     <%= render 'users/claim_form' %>
   </div>
   
-  <strong>Last Modified:</strong> <%= Time.at(@character.lastmodified / 1000).strftime("%m/%d/%y %I:%M%p") %><br />             
+  <strong>Last Modified:</strong> <%= Time.at(@character.lastModified / 1000).strftime("%m/%d/%y %I:%M%p") %><br />             
   <strong>Realm:</strong> <%= @character.realm.name %><br />             
   <strong>Level:</strong> <%= @character.level %><br />            
-  <strong>Achievement Points:</strong> <%= @character.achievementpoints %>
+  <strong>Achievement Points:</strong> <%= @character.achievementPoints %>
 </div>
 
 <div class="span-24 outfit round">

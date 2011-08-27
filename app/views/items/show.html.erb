@@ -6,7 +6,7 @@
 <div class="span-10 tooltip_border">
   <h2 class="<%= Battlenet::quality[@item.quality] %>"><%= @item.name %></h2>
   <div>
-    <%= render 'stats', :bonusstats => @item.bonusstats %>
+    <%= render 'stats', :item => @item %>
 
   </div>
 </div>
