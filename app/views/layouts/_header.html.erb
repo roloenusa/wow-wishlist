@@ -1,14 +1,20 @@
 <header>
   <div class="span-24 header">
-    <h1>WoW Wishlist</h1>
+    <h1><em class="alt">The</em> Woshlist<em class="alt">!</em></h1>
     <h2 class="alt">The Subtitle</h2>
     <hr />
+    <nav class="round">
+	  <ul>
+	  <li><%= link_to 'Characters', characters_path %></li>
+	  <li><%= link_to 'Items', items_path %></li>
       <% if signed_in? %>
-        <%= link_to current_user.name, current_user %> | 
-        <a href="<%= signout_path %>">Sign Out</a>
+        <li><%= link_to current_user.name, current_user %> | </li>  
+        <li><a href="<%= signout_path %>">Sign Out</a></li>
       <% else %>
-        <a href="<%= signin_path %>">Sign In</a>
+        <li><a href="<%= signin_path %>">Sign In</a></li>
       <% end %>
+      </ul>
+    </nav>
     <hr />
   </div>
 </header>

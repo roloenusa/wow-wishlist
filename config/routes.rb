@@ -4,11 +4,15 @@ WowWishlist::Application.routes.draw do
   resources :characters do
     collection do
       get 'search'
-      get 'retrieve'
     end
   end
   
-  resources :items
+  resources :items do
+    collection do
+      get 'search'
+    end
+  end
+  
   resources :users
   resources :realms,        :only => [:index]
   resources :sessions,      :only => [:new, :create, :destroy]

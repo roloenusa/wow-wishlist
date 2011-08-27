@@ -1,0 +1,8 @@
+<h2>Search for Items</h2>
+<%= form_tag search_items_path, :method => 'get' do %>
+  <div class="field">
+    <%= label_tag 'Item:' %> 
+    <%= text_field_tag :id, params[:name] %> 
+	<%= submit_tag "Search" %>
+  </div>  
+<% end %>

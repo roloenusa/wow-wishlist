@@ -13,17 +13,9 @@ body {
   background: linear-gradient(top, rgba(242,246,248,1) 0%,rgba(216,225,231,1) 15%,rgba(181,198,208,1) 71%,rgba(224,239,249,1) 100%); /* W3C */
 }
 
-header {
-  
-}
-
-footer {
-  padding-top: 20px;
-}
-
-section {
-  background: #fff;
-}
+header {}
+footer { padding-top: 20px; }
+section { background: #fff; }
 
 .container {
   width:990px;
@@ -38,6 +30,39 @@ section {
   border-radius:         10px;
 }
 
+/* Navigation */
+nav {
+  float: right;
+  background: white;
+  padding: 0 0.7em;
+  white-space: nowrap;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
+}
+
+nav ul li a {
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+nav ul li a:visited { color: #09c; }
+nav ul li a:hover { text-decoration: underline; } 
+
+
+.pagination  {}
+.pagination a {text-decoration:none; background-color:#F0F0F0; padding:5px;}
+.pagination a:hover {text-decoration:underline;}
+
+/* Character */
 .character-compact {
 	clear:both;
 	background-color:#FFF2E1;
@@ -47,6 +72,7 @@ section {
 	padding: 10px;
 }
 
+/* Item */
 .item-compact {
 	clear:both;
 	/*background-color:#454545;

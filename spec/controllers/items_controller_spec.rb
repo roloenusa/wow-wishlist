@@ -42,4 +42,55 @@ describe ItemsController do
       response.should have_selector("title", :content => "Items")
     end
   end
+  
+  describe "GET 'search'" do
+    
+    before(:each) do
+      @item = Factory(:item)
+    end
+    
+    describe "success" do
+      
+      it "should find the right item in the database by id" do
+        get :search, :id => @item.id
+        assigns(:item).should == @item
+      end
+      
+      it "should find the right item in the database by name" do
+        get :search, :id => @item.name
+        assigns(:item).should == @item
+      end
+      
+      it "should redirect to the item page" do
+        get :search, :id => @item.name
+        response.should redirect_to(item_path(@item))
+      end
+      
+      describe "battlenet integration" do
+        
+        before(:each) do
+          @id = @item.id
+          @item.destroy 
+        end
+        
+        it "should find the item in battlenet" do
+          get :search, :id => @id
+          assigns(:item).should == @item
+        end
+        
+        it "should redirect to the item page" do
+          get :search, :id => @id
+          response.should redirect_to(item_path(@item))
+        end
+      end
+    end
+    
+    describe "failure" do
+      
+      it "should display a failure message" do
+        get :search, :id => @item.id
+        flash[:error] =~ /we were unable to find/i
+      end
+    end
+  end
 end
