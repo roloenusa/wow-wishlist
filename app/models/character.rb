@@ -77,6 +77,8 @@ class Character < ActiveRecord::Base
 private
 
   def prepare_to_save
-    @items = @items.to_s if self.items
+    Rails.logger.info "Preparing to save #{self.item.id}"
+    @items = self.items.to_s if self.items
+    Rails.logger.info "Changed to class: #{self.item.class}"
   end
 end
