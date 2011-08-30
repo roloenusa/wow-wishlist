@@ -12,7 +12,8 @@ describe Character do
       :gender             => 0,
       :level              => 85,
       :achievementPoints  => 6600,
-      :thumbnail          => "sargeras/189/860861-avatar.jpg"
+      :thumbnail          => "sargeras/189/860861-avatar.jpg",
+      :items              => nil
     }
   end
   
@@ -151,16 +152,29 @@ describe Character do
     
     before(:each) do
       @character = @realm.characters.create(@attr)
-      @character.items = "{:items => {:averageItemLevel => 360,:averageItemLevelEquipped => 358, 
-                           :head => {:id => 63485, :name => \"Cowl of Rebellion\",:icon =>\"inv_helmet_104\", :quality => 3,
-                           :tooltipParams => { :gem0=>52296,:gem1 => 52207, :enchant=>4207, :reforge=>167}}}}"
+      @character.items = {:averageItemLevel => 360,:averageItemLevelEquipped => 358, 
+                           :head => {:id => 63485, :name => "Cowl of Rebellion",:icon =>"inv_helmet_104", :quality => 3,
+                           :tooltipParams => { :gem0=>52296,:gem1 => 52207, :enchant=>4207, :reforge=>167}}}
       @item = Item.find_or_create(63485)
     end
     
-    it "should respond to :full_items" do
-      @character.should respond_to(:full_items)
+    it "should respond to create_inventory" do
+      @character.should respond_to(:create_inventory)
     end
     
-    it "should return all the full items"
+    it "should respond to :inventory" do
+      @character.should respond_to(:inventory)
+    end
+    
+    it "should return the items the user has in their inventory" do
+      @character.create_inventory
+      @character.inventory.count.should == 1
+      @character.inventory.first.id.should == @item.id
+    end
+    
+    it "should have the tooltipParams from the character" do
+      @character.create_inventory
+      @character.inventory.first.tooltipParams.should == @character.items[:head][:tooltipParams]
+    end
   end
 end

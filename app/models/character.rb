@@ -9,8 +9,11 @@ class Character < ActiveRecord::Base
   validates :name,    :presence => true
   validates :realm_id,  :presence => true
   validates_uniqueness_of :name, :scope => :realm_id
+  
+  attr_accessor :inventory, :lastModified
 
-
+  before_save :prepare_to_save
+  
   def update_from_battlenet?
     battlenet = Character.get_from_battlenet(self.realm.region, self.realm.slug, self.name)    
     unless battlenet.nil?
@@ -35,7 +38,7 @@ class Character < ActiveRecord::Base
     if bn[:status].nil?
       bn.delete(:realm)
       bn.delete(:status)
-      bn[:items] = bn[:items].to_s unless bn[:items].nil?
+      #bn[:items] = bn[:items].to_s unless bn[:items].nil?
       return bn
     end
     
@@ -47,13 +50,33 @@ class Character < ActiveRecord::Base
     unless @character = Character.find_by_realm(region, realm, name)
       bn = Character.get_from_battlenet(region, realm, name)
       realm = Realm.find_by_region_and_name(region, realm)
-      @character = realm.characters.create(bn) unless realm.nil?
+      @character = realm.characters.create(bn) if realm
     end
     
     (@character.nil? || @character.id.nil?) ? nil : @character
   end
   
-  def full_items
-    
+  def create_inventory
+    @inventory = []
+    self.items.each do |k,v|
+      
+      if v.is_a?(Hash)
+        if i = Item.find_or_create(v[:id])
+          i.tooltipParams = v[:tooltipParams]
+          @inventory << i
+        end
+      end
+    end
+  end
+  
+  #Gotta update the time manually since it's comes on Java and not Unix format
+  def lastModified=(time)
+    @lastModified = Time.at(time/1000)
+  end
+
+private
+
+  def prepare_to_save
+    @items = @items.to_s if self.items
   end
 end

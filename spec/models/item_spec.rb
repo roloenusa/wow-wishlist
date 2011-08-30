@@ -111,5 +111,16 @@ describe Item do
         end.should_not change(Item, :count)
       end
     end
+    
+    describe "character integration" do
+      
+      before(:each) do
+        @item = Factory(:item)
+      end
+      
+      it "should respond to tooltipParams" do
+        @item.should respond_to(:tooltipParams)
+      end
+    end
   end
 end
