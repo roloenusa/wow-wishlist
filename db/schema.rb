@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110830054502) do
+ActiveRecord::Schema.define(:version => 20110830063400) do
 
   create_table "bounds", :force => true do |t|
     t.integer  "item_id"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(:version => 20110830054502) do
   add_index "bounds", ["persona_id"], :name => "index_bounds_on_persona_id"
 
   create_table "characters", :force => true do |t|
-    t.datetime "lastModified"
     t.string   "name"
     t.integer  "klass"
     t.integer  "race"
@@ -37,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20110830054502) do
     t.datetime "updated_at"
     t.integer  "realm_id"
     t.text     "items",             :limit => 255
+    t.datetime "lastModified"
   end
 
   add_index "characters", ["name"], :name => "index_characters_on_name_and_realm", :unique => true
