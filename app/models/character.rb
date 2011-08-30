@@ -11,8 +11,6 @@ class Character < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :realm_id
   
   attr_accessor :inventory, :lastModified
-
-  before_save :prepare_to_save
   
   def update_from_battlenet?
     battlenet = Character.get_from_battlenet(self.realm.region, self.realm.slug, self.name)    
@@ -38,7 +36,7 @@ class Character < ActiveRecord::Base
     if bn[:status].nil?
       bn.delete(:realm)
       bn.delete(:status)
-      #bn[:items] = bn[:items].to_s unless bn[:items].nil?
+      bn[:items] = bn[:items].to_s unless bn[:items].nil?
       return bn
     end
     
@@ -72,13 +70,5 @@ class Character < ActiveRecord::Base
   #Gotta update the time manually since it's comes on Java and not Unix format
   def lastModified=(time)
     @lastModified = Time.at(time/1000)
-  end
-
-private
-
-  def prepare_to_save
-    Rails.logger.info "Preparing to save #{self.item.id}"
-    @items = self.items.to_s if self.items
-    Rails.logger.info "Changed to class: #{self.item.class}"
   end
 end
