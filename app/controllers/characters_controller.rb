@@ -4,6 +4,7 @@ class CharactersController < ApplicationController
     if @character = Character.find_by_id(params[:id])
       @title = "#{@character.realm.name} | #{@character.name}"
       @character.items = eval(@character.items ||= "{}")
+      @character.create_inventory
       @relationship = current_user.claimed?(@character) if current_user
     else
       render 'search'
@@ -13,11 +14,6 @@ class CharactersController < ApplicationController
   def index
     @title = "Characters"
     @characters = Character.order("id DESC").limit(10)
-  end
-  
-  def new
-    @title = "New"
-    render 'search'
   end
   
   def update
@@ -37,14 +33,13 @@ class CharactersController < ApplicationController
   def search
     @title = "Search"
     
-    params[:region].gsub!(/ /,'')
-    params[:realm].gsub!(/ /,'')
     params[:name].gsub!(/ /,'')
+    realm = Realm.find_by_id(params[:realm][:id])
     
-    @character = Character.find_or_create(params[:region], params[:realm], params[:name])
+    @character = Character.find_or_create('us', realm.name, params[:name])
     if @character.nil?
-      flash[:error] = "We were unable to find #{params[:realm]}/#{params[:name]} in Battle.net"
-      redirect_to new_character_path
+      flash[:error] = "We were unable to find #{realm.name}/#{params[:name]} in Battle.net"
+      redirect_to characters_path
     else
       redirect_to @character
     end

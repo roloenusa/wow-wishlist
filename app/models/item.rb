@@ -28,6 +28,7 @@ class Item < ActiveRecord::Base
       bn[:itemSpells] = bn[:itemSpells].to_s unless bn[:itemSpells].nil?
       bn[:itemSource] = bn[:itemSource].to_s unless bn[:itemSource].nil?
       bn[:weaponInfo] = bn[:weaponInfo].to_s unless bn[:weaponInfo].nil?
+      bn[:socketInfo] = bn[:socketInfo].to_s unless bn[:socketInfo].nil?
       return bn
     end
     return nil
@@ -38,6 +39,7 @@ class Item < ActiveRecord::Base
     self.itemSpells = eval(self.itemSpells) unless self.itemSpells.nil?
     self.itemSource = eval(self.itemSource) unless self.itemSource.nil?
     self.weaponInfo = eval(self.weaponInfo) unless self.weaponInfo.nil?
+    self.socketInfo = eval(self.socketInfo) unless self.socketInfo.nil?
     return self
   end
 end  

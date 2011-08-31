@@ -2,6 +2,7 @@ require 'net/http'
 require 'rexml/document'
 require 'json'
 require 'battlenet'
+require 'addressable/uri'
 
 module Battlenet
 
@@ -100,7 +101,7 @@ private
   
   def self.call_api(query)
     
-    url = URI.parse(query)
+    url = Addressable::URI.parse(query)
     query = url.path + (url.query.nil? ? "" : "?#{url.query}")
     request = Net::HTTP::Get.new(query)
     response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}

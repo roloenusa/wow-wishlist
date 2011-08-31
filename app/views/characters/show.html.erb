@@ -21,13 +21,25 @@
 
 <div class="span-24 outfit round">
   <table>
-  <% @character.items.each do |k, v| %>
-    <% if v.is_a?(Hash) %>
-      <tr>
-        <td><strong><%= k.to_s.capitalize %></strong></td>
-        <td class="<%= Battlenet::quality[v[:quality]]%>"><%= link_to v[:name], item_path(v[:id]), :rel => "item=#{v[:id]}" %></td>
-      </tr>
-    <% end %>
+    <tr>
+      <th>Slot</th>
+      <th>Item</th>
+      <th>Gems</th>
+      <th>Enchanted?</th>
+      <th>Reforged?</th>
+      <th>Level</th>
+    <tr>
+  <% @character.inventory.each do |v| %>
+    <tr>
+      <td><strong><%= Battlenet::Item::InventoryType[v[:inventoryType]] %></strong></td>
+      <td class="<%= Battlenet::quality[v[:quality]] %>"><%= link_to v[:name], item_path(v[:id]), :rel => "item=#{v[:id]}" %></td>
+      <td><%= link_to '#', item_path(v.tooltipParams[:gem0]), :rel =>  "item=#{v.tooltipParams[:gem0]}" if  v.tooltipParams[:gem0] %>
+          <%= link_to '#', item_path(v.tooltipParams[:gem1]), :rel =>  "item=#{v.tooltipParams[:gem0]}" if  v.tooltipParams[:gem1] %>
+          <%= link_to '#', item_path(v.tooltipParams[:gem2]), :rel =>  "item=#{v.tooltipParams[:gem0]}" if  v.tooltipParams[:gem2] %></td>
+      <td><%= "Yes" if v.tooltipParams[:enchant] %></td>
+      <td><%= "Yes" if v.tooltipParams[:reforge] %></td>
+      <td><%= v[:itemLevel] %></td>
+    </tr>
   <% end %>
   </table>
 </div>

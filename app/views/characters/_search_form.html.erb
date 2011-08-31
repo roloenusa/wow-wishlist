@@ -1,11 +1,12 @@
 <%= form_tag search_characters_path, :method => 'get' do %>
   <div class="field">
     <%= label_tag :region %><br />
-    <%= text_field_tag :region, params[:region] %>
+    <%= select_tag(:region, options_for_select(Battlenet::get_regions, Battlenet::get_regions.map {|v| [v, v]})) %>
+
   </div>
   <div class="field">
     <%= label_tag :realm %><br />
-    <%= text_field_tag :realm %>
+    <%= collection_select(:realm, :id, Realm.all, :id, :name)%>
   </div>
   <div class="field">
     <%= label_tag :name %><br />

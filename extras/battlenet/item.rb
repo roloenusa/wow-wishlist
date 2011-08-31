@@ -1,5 +1,4 @@
 module Battlenet
-
   module Item
   
     # For now the best alternative is to use wowroster to hotlink

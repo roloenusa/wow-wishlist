@@ -11,9 +11,9 @@ class ItemsController < ApplicationController
   end
   
   def search
-    if @item = Item.find_or_create(params[:id].to_i)
+    if @item = Item.find(:first, :conditions => ["name LIKE ?", params[:id]])
       redirect_to @item
-    elsif @item = Item.find_by_name(params[:id])
+    elsif @item = Item.find_or_create(params[:id].to_i)
       redirect_to @item
     else
       flash[:error] = "We were unable to find [#{params[:id]}] in our database or Battle.net."
