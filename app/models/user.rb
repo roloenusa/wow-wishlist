@@ -1,3 +1,4 @@
+require 'digest'
 class User < ActiveRecord::Base
   
   has_many :relationships,  :dependent => :destroy

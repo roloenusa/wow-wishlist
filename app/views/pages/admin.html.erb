@@ -1,0 +1,41 @@
+<h1>Admin Panel</h1>
+<div class="span-24">
+	<h2 class="alt">Users</h2>
+	<div>
+	<%= will_paginate @users, :param_name => :page_user %>
+	<table>
+	  <% @users.each do |user|  %>
+		<tr>
+			<td><%= link_to user.name, user_path(user) %></td>
+		</tr>
+ 	  <% end %>
+	<table>
+	<%= will_paginate @users, :param_name => :page_user %>
+	</div>
+</div>	
+
+<div class"span-24">
+	<h2 class="alt">Characters</h2>
+	<%= will_paginate @characters, :param_name => :page_character %>
+	<table>
+	  <% @characters.each do |char|  %>
+		<tr>
+			<td><%= link_to char.name, character_path(char) %></td><td><%= char.realm.name %></td><td><%= char.realm.region %></td>
+		</tr>
+ 	  <% end %>
+	<table>
+	<%= will_paginate @characters, :param_name => :page_character %>
+</div>
+
+<div class"span-24">
+	<h2 class="alt">Items</h2>
+	<%= will_paginate @items, :param_name => :page_item  %>
+	<table>
+	  <% @items.each do |item|  %>
+		<tr>
+			<td><%= link_to item.name, item_path(item), :rel => "item=#{item.id}" %></td><td><%= item.itemLevel %></td>
+		</tr>
+ 	  <% end %>
+	<table>
+	<%= will_paginate @items, :param_name => :page_item %>
+</div>

@@ -44,6 +44,10 @@ module SessionsHelper
     clear_return_to
   end
   
+  def admin_user
+    redirect_to(root_path) unless current_user.admin?
+  end
+  
 private
   
   def user_from_remember_token

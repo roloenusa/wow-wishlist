@@ -31,6 +31,7 @@ describe UsersController do
   end
 
   describe "GET 'new'" do
+    
     it "should be successful" do
       get 'new'
       response.should be_success
@@ -55,6 +56,7 @@ describe UsersController do
   describe "POST 'create'" do
 
     describe "success" do
+      
       before(:each) do
         @attr = { :name => "foobar", :email => "foo@bar.com", :password => "foobar", :password_confirmation => "foobar" }
       end

@@ -40,4 +40,38 @@ describe PagesController do
     end
   end
 
+  describe "GET 'admin'" do
+    
+    describe "failure" do
+      
+      before(:each) do
+        @user = Factory(:user)
+        test_sign_in @user
+      end
+      
+      it "should redirect the user" do
+        get :admin
+        response.should redirect_to(root_path)
+      end
+    end
+    
+    describe "success" do
+      
+      before(:each) do
+        @user = Factory(:user)
+        @user.toggle!(:admin)
+        test_sign_in @user
+      end
+      
+      it "should be successful" do
+        get :admin
+        response.should be_success
+      end
+      
+      it "should have the right title" do
+        get :admin
+        response.should have_selector("title", :content => "Admin Panel")
+      end
+    end
+  end
 end

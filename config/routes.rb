@@ -22,6 +22,7 @@ WowWishlist::Application.routes.draw do
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+  match '/admin',   :to => 'pages#admin'
   
   root :to => "pages#home"
 
