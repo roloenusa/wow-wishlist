@@ -1,0 +1,7 @@
+<%= form_for @relationship.bounds.find_by_item_id(item), 
+    :html => {:method => :delete},
+    # :remote => true 
+	do |f| %>
+	<div><%= f.hidden_field :persona_id %><%= f.hidden_field :persona %></div>
+    <div class="actions"><%= f.submit "Unbind" %></div>
+<% end %>

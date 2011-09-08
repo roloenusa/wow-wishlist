@@ -1,0 +1,9 @@
+<% if signed_in? %>
+  <div id="binding_form">
+    <% if @relationship.bound?(item) %>
+      <%= render 'unbind', :item => item %>
+    <% else %>
+      <%= render 'bind', :item => item %>
+    <% end %>
+  </div>
+<% end %>
