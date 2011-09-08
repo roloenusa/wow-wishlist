@@ -75,13 +75,10 @@ nav ul li a:hover { text-decoration: underline; }
 /* Item */
 .item-compact {
 	clear:both;
-	/*background-color:#454545;
-	border-style: solid;
-	border-width: 1px;
-	border-color: #866B26;*/
 	padding: 10px;
 }
 
+.outfit th {background:#444444;}
 .outfit {background:#8F8F8F; color: #fff;} 
 .outfit tbody tr:nth-child(even) td, .outfit tbody tr.even td {background:#9B9B9B;} 
 
@@ -112,3 +109,14 @@ nav ul li a:hover { text-decoration: underline; }
 .Legendary, .Legendary a, .Legendary a:hover, .Legendary a:visited, .Legendary a:focus{ color: #FF8000; }
 .Artifact, .Artifact a, .Artifact a:hover, .Artifact a:visited, .Artifact a:focus { color: #E5CC80; }
 .Heirloom , .Heirloom a, .Heirloom a:hover, .Heirloom a:visited, .Heirloom a:focus{ color: #E5CC80; }
+
+.item_small {
+  clear: both; 
+  margin: 5px;
+  background: #9B9B9B;	
+  font: verdana, arial, helvetica, sans-serif;
+  padding: 10px;
+}
+.below { border: 3px solid #FF4940; }
+.same { border: 3px solid #FFFFFF; }
+.above { border: 3px solid #39E24D; }

@@ -1,23 +1,21 @@
 <header>
-  <div class="span-24 header">
-    <h1><em class="alt">The</em> Woshlist<em class="alt">!</em></h1>
-    <h2 class="alt">Don't lose your items again...</h2>
-    <hr />
-    <nav class="round">
-	  <ul>
+  <h1><em class="alt">The</em> Woshlist<em class="alt">!</em></h1>
+  <h2 class="alt">Don't lose your items again...</h2>
+  <hr />
+  <nav class="round">
+	<ul>
 	  <li><%= link_to 'Characters', characters_path %></li>
 	  <li><%= link_to 'Items', items_path %></li>
-      <% if signed_in? %>
-		<% if current_user.admin? %>
-			<li><a href="<%= admin_path %>">Admin</a></li>
-		<% end %>
-        <li><%= link_to current_user.name, current_user %> | </li>  
-        <li><a href="<%= signout_path %>">Sign Out</a></li>
-      <% else %>
-        <li><a href="<%= signin_path %>">Sign In</a></li>
+    <% if signed_in? %>
+	  <% if current_user.admin? %>
+	    <li><a href="<%= admin_path %>">Admin</a></li>
       <% end %>
-      </ul>
-    </nav>
-    <hr />
-  </div>
+      <li><%= link_to current_user.name, current_user %> | </li>  
+      <li><a href="<%= signout_path %>">Sign Out</a></li>
+    <% else %>
+      <li><a href="<%= signin_path %>">Sign In</a></li>
+    <% end %>
+    </ul>
+  </nav>
+  <hr />
 </header>

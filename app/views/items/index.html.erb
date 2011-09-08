@@ -1,8 +1,23 @@
 <h1>Items</h1>
-<hr />
 <%= render 'search' %>
 <hr />
 <h2>Latest Additions</h2>
+
 <%= will_paginate %>
-  <%= render @items %>
+<hr class="space" />
+<table class="outfit">
+  <tr>
+    <th>Slot</th>
+    <th>Item</th>
+    <th>Level</th>
+  <tr>
+<% @items.each do |v| %>
+  <tr>
+    <td><strong><%= Battlenet::Item::InventoryType[v[:inventoryType]] %></strong></td>
+    <td class="<%= Battlenet::quality[v[:quality]] %>"><%= link_to v[:name], item_path(v[:id]), :rel => "item=#{v[:id]}" %></td>
+    <td><%= v[:itemLevel] %></td>
+  </tr>
+<% end %>
+</table>
+
 <%= will_paginate %>

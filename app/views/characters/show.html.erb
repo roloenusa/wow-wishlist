@@ -1,5 +1,7 @@
 <div class="span-12">
-  <div class="top left"><%= character_image @character.thumbnail %></div>
+  <div class="top left">
+    <%= character_image @character.thumbnail %>
+  </div>
   <div class="prepend-3">
     <h1><%= @character.name %></h1>
     <h2><%= "#{@character.level}  #{Battlenet::races[@character.race][:name]} #{Battlenet::klass[@character.klass][:name]}" %><br />
@@ -16,10 +18,13 @@
   <strong>Last Modified:</strong> <%= @character.lastModified %><br />             
   <strong>Realm:</strong> <%= @character.realm.name %><br />             
   <strong>Level:</strong> <%= @character.level %><br />            
-  <strong>Achievement Points:</strong> <%= @character.achievementPoints %>
+  <strong>Item Level:</strong> <%= @character.items[:averageItemLevel] %><br />
+  <strong>Item Level Equipped:</strong> <%= @character.items[:averageItemLevelEquipped] %>
 </div>
 
-<div class="span-24 outfit round">
+<hr />
+
+<div class="outfit round">
   <table>
     <tr>
       <th>Slot</th>
@@ -44,14 +49,44 @@
   </table>
 </div>
 
+<hr />
+
 <% if @relationship %>
   <div class="span-12 colborder">
     <h2>Account Items</h2>
-    <%= render current_user.unique_items(@relationship), :persona => @relationship %>
+	<ul>
+    <% current_user.unique_items(@relationship).each do |item| %>
+	  <li class="item_small round <%= compare_by_level item.itemLevel, @character.items[:averageItemLevel] %>">	
+		<div class="top right">
+		  <%= render 'binding_form', :item => item %>
+		</div>
+		<div class="left">
+		  <%= icon_image item.icon, :size => "40x40" %>
+		</div>
+		<div class="info-compact <%= Battlenet::quality[item.quality] %> item"> 
+		  <strong><%= link_to_item item %></strong>
+		</div>
+	  </li>
+    <% end %>	
+    </ul>
   </div>
 
   <div class="span-12 last">
     <h2>Character Items</h2>
-    <%= render @relationship.items, :persona => @relationship %>
+	
+    <% @relationship.items.each do |item| %>
+	  <div class="item_small round <%= compare_by_level item.itemLevel, @character.items[:averageItemLevel] %>">	
+		<div class="top right">
+		  <%= render 'binding_form', :item => item %>
+		</div>
+		<div class="left">
+		  <%= icon_image item.icon, :size => "40x40" %>
+		</div>
+		<div class="info-compact <%= Battlenet::quality[item.quality] %> item"> 
+		  <strong><%= link_to_item item %></strong>
+		</div>
+	  </div>
+    <% end %>	
+    
   </div>
 <% end %>  

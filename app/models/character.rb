@@ -54,6 +54,8 @@ class Character < ActiveRecord::Base
   end
   
   def create_inventory
+    
+    self.items = eval(self.items ||= "{}")
     @inventory = []
     self.items.each do |k,v|
       if v.is_a?(Hash)

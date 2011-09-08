@@ -3,7 +3,6 @@ class CharactersController < ApplicationController
   def show
     if @character = Character.find_by_id(params[:id])
       @title = "#{@character.realm.name} | #{@character.name}"
-      @character.items = eval(@character.items ||= "{}")
       @character.create_inventory
       @relationship = current_user.claimed?(@character) if current_user
     else

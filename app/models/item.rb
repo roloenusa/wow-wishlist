@@ -35,11 +35,11 @@ class Item < ActiveRecord::Base
   end
   
   def prepare!
-    self.bonusStats = eval(self.bonusStats) unless self.bonusStats.nil?
-    self.itemSpells = eval(self.itemSpells) unless self.itemSpells.nil?
-    self.itemSource = eval(self.itemSource) unless self.itemSource.nil?
-    self.weaponInfo = eval(self.weaponInfo) unless self.weaponInfo.nil?
-    self.socketInfo = eval(self.socketInfo) unless self.socketInfo.nil?
+    self.bonusStats = eval(self.bonusStats) if self.bonusStats
+    self.itemSpells = eval(self.itemSpells) if self.itemSpells
+    self.itemSource = eval(self.itemSource) if self.itemSource
+    self.weaponInfo = eval(self.weaponInfo) if self.weaponInfo
+    self.socketInfo = eval(self.socketInfo) if self.socketInfo
     return self
   end
 end  
