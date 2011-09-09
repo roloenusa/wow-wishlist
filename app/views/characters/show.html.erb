@@ -24,7 +24,7 @@
 
 <hr />
 
-<div class="outfit round">
+<div class="outfit">
   <table>
     <tr>
       <th>Slot</th>
@@ -49,14 +49,15 @@
   </table>
 </div>
 
+<% if @relationship %>
+
 <hr />
 
-<% if @relationship %>
   <div class="span-12 colborder">
     <h2>Account Items</h2>
-	<ul>
+
     <% current_user.unique_items(@relationship).each do |item| %>
-	  <li class="item_small round <%= compare_by_level item.itemLevel, @character.items[:averageItemLevel] %>">	
+	  <div class="item_small round <%= compare_by_level item.itemLevel, @character.items[:averageItemLevel] %>">	
 		<div class="top right">
 		  <%= render 'binding_form', :item => item %>
 		</div>
@@ -66,9 +67,8 @@
 		<div class="info-compact <%= Battlenet::quality[item.quality] %> item"> 
 		  <strong><%= link_to_item item %></strong>
 		</div>
-	  </li>
+	  </div>
     <% end %>	
-    </ul>
   </div>
 
   <div class="span-12 last">

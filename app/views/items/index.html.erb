@@ -4,17 +4,22 @@
 <h2>Latest Additions</h2>
 
 <%= will_paginate %>
+
 <hr class="space" />
 <table class="outfit">
   <tr>
     <th><%= sort_link 'Slot', :inventoryType %></th>
     <th><%= sort_link 'Item', :name %></th>
+	<th><%= sort_link 'Class', :itemClass %></th>
+	<th><%= sort_link 'Subclass', :itemSubClass %></th>
     <th><%= sort_link 'Level', :itemLevel %></th>
   <tr>
 <% @items.each do |v| %>
   <tr>
     <td><strong><%= Battlenet::Item::InventoryType[v[:inventoryType]] %></strong></td>
     <td class="<%= Battlenet::quality[v[:quality]] %>"><%= link_to v[:name], item_path(v[:id]), :rel => "item=#{v[:id]}" %></td>
+	<td><%= Battlenet::Item::Class[v[:itemClass]] %></td>
+	<td><%= Battlenet::Item::Subclass[v[:itemClass]][v[:itemSubClass]].first %></td>
     <td><%= v[:itemLevel] %></td>
   </tr>
 <% end %>
