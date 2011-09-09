@@ -7,7 +7,10 @@ class ItemsController < ApplicationController
   
   def index
     @title = "Items"
-    @items = Item.order("id DESC").paginate(:page => params[:page], :per_page => 10)
+    category = params[:c] || 'id'
+    direction = params[:d] || 'DESC'
+    quantity = params[:q] || 20
+    @items = Item.order("#{category} #{ direction }").paginate(:page => params[:page], :per_page => quantity)
   end
   
   def search

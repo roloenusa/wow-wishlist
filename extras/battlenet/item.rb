@@ -13,7 +13,7 @@ module Battlenet
     
     InventoryType = ["None", "Head", "Neck", "Shoulder", "Shirt", "Chest", "Waist", "Legs", "Feet", "Wrist", "Hands", "Finger", 
       "Trinket", "One-Hand", "Shield", "Ranged", "Cloak", "Two-Hand", "Bag", "Tabard", "Robe", "Main Hand", 
-      "Off Hand", "Held In Off-hand", "Ammo", "Thrown", "Ranged Right", "Relic"]
+      "Off Hand", "Held In Off-hand", "Ammo", "Thrown", "Ranged Right", "", "Relic"]
     
     Subclass = { # "classid","subclassid","subclassname","subclassfullname"
       0 => { 0 => [ "Consumable",nil  ],  

@@ -78,9 +78,10 @@ nav ul li a:hover { text-decoration: underline; }
 	padding: 10px;
 }
 
-.outfit th {background:#444444;}
 .outfit {background:#8F8F8F; color: #fff;} 
-.outfit tbody tr:nth-child(even) td, .outfit tbody tr.even td {background:#9B9B9B;} 
+.outfit tbody tr:nth-child(even) td, .outfit tbody tr.even td {background:#9B9B9B;}
+.outfit th {background:#444444;}
+.outfit th a {color: #ffffff;}
 
 .info-compact {
 	padding: 10px;

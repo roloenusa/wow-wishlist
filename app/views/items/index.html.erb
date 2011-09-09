@@ -7,9 +7,9 @@
 <hr class="space" />
 <table class="outfit">
   <tr>
-    <th>Slot</th>
-    <th>Item</th>
-    <th>Level</th>
+    <th><%= sort_link 'Slot', :inventoryType %></th>
+    <th><%= sort_link 'Item', :name %></th>
+    <th><%= sort_link 'Level', :itemLevel %></th>
   <tr>
 <% @items.each do |v| %>
   <tr>
