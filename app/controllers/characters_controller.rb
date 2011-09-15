@@ -1,5 +1,5 @@
 class CharactersController < ApplicationController
-  
+  before_filter :admin_user, :only => [:destroy]
   def show
     if @character = Character.find_by_id(params[:id])
       @title = "#{@character.realm.name} | #{@character.name}"
@@ -42,5 +42,12 @@ class CharactersController < ApplicationController
     else
       redirect_to @character
     end
+  end
+  
+  def destroy
+    char = Character.find(params[:id])
+    char.destroy
+    flash[:success] = "Character #{char.name}/#{char.realm.name} destroyed."   
+    redirect_to admin_path
   end
 end

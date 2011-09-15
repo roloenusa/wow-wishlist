@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :only => [:edit, :update]
   before_filter :correct_user, :only => [:edit, :update]
+  before_filter :admin_user, :only => [:destroy]
   
   def show
     @user = User.find_by_id(params[:id])
@@ -40,6 +41,15 @@ class UsersController < ApplicationController
       @title = "Edit user"
       render 'edit'
     end
+  end
+  
+  def destroy
+    user = User.find(params[:id])
+    unless current_user == user then
+      user.destroy
+      flash[:success] = "User #{user.name} destroyed."
+    end   
+    redirect_to admin_path
   end
   
 private

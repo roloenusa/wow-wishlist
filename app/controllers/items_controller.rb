@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_filter :user_admin, :only => [:destroy, :update]
   
   def show
     @item = Item.find_or_create(params[:id]).prepare!
@@ -23,5 +24,12 @@ class ItemsController < ApplicationController
       flash[:notice] = "If you entered a name, please try the item id instead!"
       redirect_to items_path
     end
+  end
+  
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    flash[:success] = "Item [#{item.id}] #{item.name} destroyed."
+    redirect_to admin_path
   end
 end

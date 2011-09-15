@@ -6,7 +6,8 @@
 	<table>
 	  <% @users.each do |user|  %>
 		<tr>
-			<td><%= link_to user.name, user_path(user) %></td>
+			<td><%= link_to user.name, user_path(user) %></td><td>Relationships: <%= user.relationships.count %></td><td>Items: <%= user.items.count %></td>
+			<td><%= link_to "delete", user, :method => :delete, :confirm => "You sure?", :title => "Delete #{user.name}"%></td>
 		</tr>
  	  <% end %>
 	<table>
@@ -20,7 +21,9 @@
 	<table>
 	  <% @characters.each do |char|  %>
 		<tr>
-			<td><%= link_to char.name, character_path(char) %></td><td><%= char.realm.name %></td><td><%= char.realm.region %></td>
+			<td><%= link_to char.name, character_path(char) %></td><td><%= char.realm.name %></td><td>Relationships: <%= char.owners.count %></td><td><%= char.realm.region %></td>
+			<td><%= link_to "update", char, :method => :put, :confirm => "You sure?", :title => "Update #{char.name}"%></td>
+			<td><%= link_to "delete", char, :method => :delete, :confirm => "You sure you want to DELETE #{char.name}?", :title => "Delete #{char.name}"%></td>
 		</tr>
  	  <% end %>
 	<table>
@@ -33,7 +36,8 @@
 	<table>
 	  <% @items.each do |item|  %>
 		<tr>
-			<td><%= link_to item.name, item_path(item), :rel => "item=#{item.id}" %></td><td><%= item.itemLevel %></td>
+			<td><%= item.id %></td><td><%= link_to item.name, item_path(item), :rel => "item=#{item.id}" %></td><td><%= item.itemLevel %></td><td>Bounds: <%= item.bounds.count %></td>
+			<td><%= link_to "delete", item, :method => :delete, :confirm => "You sure you want to DELETE #{item.name}?", :title => "Delete #{item.name}"%></td>
 		</tr>
  	  <% end %>
 	<table>
